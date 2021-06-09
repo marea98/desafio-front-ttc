@@ -36,7 +36,7 @@ String.prototype.Capitalize = function() {
   return replaceUnderlineToSpace.charAt(0).toUpperCase() + replaceUnderlineToSpace.slice(1);
 }
 
-const GenericTable = ({data}) => {
+const GenericTable = ({data, Modal}) => {
   const classes = useStyles();
 
   return (
@@ -61,9 +61,7 @@ const GenericTable = ({data}) => {
                 )})}
     
                 <StyledTableCell align="right" style={{padding: "0px"}}>
-                  <IconButton>
-                    <Visibility size="small"/>
-                  </IconButton>
+                  <Modal data={row}/>
                 </StyledTableCell>
 
             </TableRow>

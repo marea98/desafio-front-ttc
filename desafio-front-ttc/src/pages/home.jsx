@@ -6,6 +6,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import aderidosData from "../data/aderidos";
 import produtosData from "../data/produtos";
 import excecoesData from "../data/excecoes";
+import AderidoModal from "../components/modals/aderidoModal";
+import ProdutoModal from "../components/modals/produtoModal";
+import ExcecoesModal from "../components/modals/excecoesModal";
 import {
   Box,
   Grid,
@@ -118,13 +121,13 @@ const SimpleTabs = ()  => {
                         </Tabs>
                     </AppBar>
                     <TabPanel value={value} index={0}>
-                        <GenericTable data={aderidosData}/>
+                        <GenericTable data={aderidosData} Modal={AderidoModal}/>
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <GenericTable data={produtosData}/>
+                        <GenericTable data={produtosData} Modal={ProdutoModal}/>
                     </TabPanel>
                     <TabPanel value={value} index={2}>
-                        <GenericTable data={excecoesData}/>
+                        <GenericTable data={excecoesData} Modal={ExcecoesModal}/>
                     </TabPanel>
                     <TabPanel value={value} index={3}>
                       <ClassificationComponent />
