@@ -18,8 +18,6 @@ import {
   Button,
   Avatar
     } from '@material-ui/core';
-
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -58,8 +56,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
-  button: {
-    height: "100%",
+  buttonsDown: {
+    margin: ".5rem",
   },
   header: {
     backgroundColor: "#ffc629",
@@ -92,12 +90,11 @@ const SimpleTabs = ()  => {
             </Grid>
         </Grid> 
         <Grid container style={{height: "2rem"}}>
-            <Grid container direction='column' style={{padding: "5rem 10rem 0 10rem"}}>
-                <Grid item justify='flex-start' container style={{marginBottom: "2rem"}} >
-                    <TextField variant='outlined' style={{backgroundColor: "#ffff"}}/>
+            <Grid container direction='column' style={{padding: "2rem 10rem 0 10rem"}}>
+                <Grid item justify='flex-start' container style={{marginBottom: ".5rem"}} >
+                    <TextField variant='outlined' placeholder="Buscar aderido" style={{backgroundColor: "#ffff"}}/>
                     <Button
                         variant="contained"
-                        className={classes.button}
                         endIcon={<SearchIcon />}
                         style={{marginLeft:"1rem", height: "100%", padding: "15px 15px 15px 15px" }}
                         >
@@ -107,7 +104,13 @@ const SimpleTabs = ()  => {
                 <Grid item container justify='center' >
                     <div className={classes.root}>
                     <AppBar position="static">
-                        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                        <Tabs 
+                          value={value} 
+                          onChange={handleChange} 
+                          aria-label="simple tabs example" 
+                          style={{ backgroundColor: "#ffc629", color: "#000" }}
+                          indicatorColor="secondary"
+                        >
                         <Tab label="Aderidos" {...a11yProps(0)} />
                         <Tab label="Produtos" {...a11yProps(1)} />
                         <Tab label="Exceções" {...a11yProps(2)} />
@@ -128,6 +131,13 @@ const SimpleTabs = ()  => {
                     </TabPanel>
                     </div>
                 </Grid>
+
+                <Grid container item justify="flex-end" style={{marginTop: ".5rem"}}>
+                  <Button variant="contained" onClick={() => alert("Exportar")} className={classes.buttonsDown}>Exportar</Button>
+                  <Button variant="contained" onClick={() => alert("Importar")} className={classes.buttonsDown}>Importar</Button>
+                  <Button variant="contained" onClick={() => alert("Enviar")} className={classes.buttonsDown}>Enviar</Button>
+              </Grid>
+
             </Grid>           
       </Grid>
     </>            

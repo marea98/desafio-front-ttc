@@ -1,17 +1,23 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { Visibility } from '@material-ui/icons';
+import {
+  Paper,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  TableBody,
+  Table, 
+  IconButton
+} from '@material-ui/core'
+
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: "#ffc629",
-    color: theme.palette.common.black,
+    backgroundColor: "#292626",
+    color: theme.palette.common.white,
   },
   body: {
     fontSize: 14,
@@ -38,9 +44,8 @@ const GenericTable = ({data}) => {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-
-            {Object.keys(data[0]).map((column, i) => <StyledTableCell key={i} align="left">{column.Capitalize()}</StyledTableCell>)}
-
+            {Object.keys(data[0]).map((column, i) => <StyledTableCell key={i} align={i === 0 ? "left" : "center"}>{column.Capitalize()}</StyledTableCell>)}
+            <StyledTableCell align="right">Visualizar</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,10 +55,16 @@ const GenericTable = ({data}) => {
             return (
             <TableRow key={i}>
             
-            {propNames.map((prop, i) => {
-              return(
-              <StyledTableCell key={prop} align="left">{row[prop]}</StyledTableCell>
-            )})}
+                {propNames.map((prop, i) => {
+                  return(
+                  <StyledTableCell key={prop} align={i === 0 ? "left" : "center"}>{row[prop]}</StyledTableCell>
+                )})}
+    
+                <StyledTableCell align="right" style={{padding: "0px"}}>
+                  <IconButton>
+                    <Visibility size="small"/>
+                  </IconButton>
+                </StyledTableCell>
 
             </TableRow>
           )})}
