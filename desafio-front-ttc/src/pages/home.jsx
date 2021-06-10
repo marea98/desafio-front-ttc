@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import GenericTable from '../components/tableComponent';
 import ClassificationComponent from '../components/classificationComponent';
 import SearchIcon from '@material-ui/icons/Search';
+import Visibility from '@material-ui/icons/Visibility';
 import aderidosData from '../data/aderidos';
 import produtosData from '../data/produtos';
 import excecoesData from '../data/excecoes';
@@ -20,7 +21,9 @@ import {
   makeStyles,
   Button,
   Avatar,
+  InputAdornment
 } from '@material-ui/core';
+import { PanoramaSharp } from '@material-ui/icons';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -79,6 +82,8 @@ const SimpleTabs = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  const [filteredSearch,setFilteredSearch] = useState("");
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -114,26 +119,23 @@ const SimpleTabs = () => {
         >
           <Grid
             item
-            justify="flex-start"
+            justify="flex-end"
             container
             style={{ marginBottom: '.5rem' }}
           >
             <TextField
+              value={filteredSearch}
+              onChange={(e) => setFilteredSearch(e.target.value)}
               variant="outlined"
               size="small"
               placeholder="Buscar aderido"
               style={{ backgroundColor: '#ffff' }}
+              InputProps={{
+                endAdornment: (
+                <InputAdornment position="end">
+                  <SearchIcon />
+                </InputAdornment> )}}
             />
-            <Button
-              variant="contained"
-              endIcon={<SearchIcon />}
-              style={{
-                backgroundColor: '#ffc629',
-                marginLeft: '1rem',
-              }}
-            >
-              Buscar
-            </Button>
           </Grid>
           <Grid item container justify="center">
             <div className={classes.root}>
@@ -152,26 +154,36 @@ const SimpleTabs = () => {
                 </Tabs>
               </AppBar>
               <TabPanel value={value} index={0}>
-                <GenericTable data={aderidosData} Modal={AderidoModal} />
+                <GenericTable data={aderidosData} Modal={AderidoModal} filteredSearch={filteredSearch} isAderido/>
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <GenericTable data={produtosData} Modal={ProdutoModal} />
+                <GenericTable data={produtosData} Modal={ProdutoModal} filteredSearch={filteredSearch}/>
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <GenericTable data={excecoesData} Modal={ExcecoesModal} />
+                <GenericTable data={excecoesData} Modal={ExcecoesModal} filteredSearch={filteredSearch}/>
               </TabPanel>
               <TabPanel value={value} index={3}>
                 <ClassificationComponent />
               </TabPanel>
             </div>
           </Grid>
-
           <Grid
             container
             item
             justify="flex-end"
             style={{ marginTop: '.5rem' }}
           >
+            {
+              value === 3 &&
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#ffc629' }}
+              onClick={() => alert('Adicionar')}
+              className={classes.buttonsDown}
+            >
+              Adicionar
+            </Button>
+            }
             <Button
               variant="contained"
               style={{ backgroundColor: '#ffc629' }}

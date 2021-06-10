@@ -35,8 +35,17 @@ String.prototype.Capitalize = function () {
   );
 };
 
-const GenericTable = ({ data, Modal }) => {
+const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
   const classes = useStyles();
+
+
+  const filteredData = () => filteredSearch === "" ? data : 
+  data.filter(x =>{
+    if (!isAderido) return x.codigo_aderido === filteredSearch
+  
+    return x.codigo === filteredSearch 
+  
+  } )
 
   return (
     <TableContainer component={Paper}>
@@ -52,7 +61,7 @@ const GenericTable = ({ data, Modal }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row, i) => {
+          {filteredData().map((row, i) => {
             const propNames = Object.keys(row);
             return (
               <TableRow key={i}>

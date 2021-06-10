@@ -78,6 +78,13 @@ const ProdutoModal = ({ data }) => {
             />
             <TextField
               variant="outlined"
+              disabled
+              label="Código aderido"
+              value={data?.codigo_aderido || ''}
+              className={classes.input}
+            />
+            <TextField
+              variant="outlined"
               label="Nome do produto"
               value={product.nomeProduto}
               onChange={(e, _) => {

@@ -5,6 +5,7 @@ const produtosData = [
     markup_minimo: '20%',
     markup_maximo: '30%',
     prefixo: 'SKT T1',
+    codigo_aderido: '1',
   },
   {
     codigo: '2',
@@ -12,6 +13,7 @@ const produtosData = [
     markup_minimo: '50%',
     markup_maximo: '60%',
     prefixo: 'SKT T1',
+    codigo_aderido: '1',
   },
   {
     codigo: '3',
@@ -19,6 +21,7 @@ const produtosData = [
     markup_minimo: '10%',
     markup_maximo: '20%',
     prefixo: 'SKT T1',
+    codigo_aderido: '2',
   },
   {
     codigo: '4',
@@ -26,6 +29,7 @@ const produtosData = [
     markup_minimo: '20%',
     markup_maximo: '70%',
     prefixo: 'SKT T1',
+    codigo_aderido: '2',
   },
   {
     codigo: '5',
@@ -33,6 +37,7 @@ const produtosData = [
     markup_minimo: '10%',
     markup_maximo: '50%',
     prefixo: 'SKT T1',
+    codigo_aderido: '3',
   },
 ];
 

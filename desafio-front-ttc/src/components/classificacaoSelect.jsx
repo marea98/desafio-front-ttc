@@ -5,37 +5,43 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import classificacoes from '../data/classificacoes';
+import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    width: '30rem',
-  },
-}));
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const ClassificacaoSelect = ({ classific }) => {
-  const classes = useStyles();
-
-  const [classificacao, setClassificacao] = useState(classific);
-
+function ClassificacaoSelect() {
   return (
-    <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">
-        Classificação
-      </InputLabel>
-      <Select
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
-        value={classificacao}
-        onChange={(e) => setClassificacao(e.target.value)}
-        label="Classificação"
-      >
-        {classificacoes.map((classific) => (
-          <MenuItem value={classific.nome}>{classific.nome}</MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <Autocomplete
+      multiple
+      id="checkboxes-tags-demo"
+      options={classificacoes}
+      disableCloseOnSelect
+      getOptionLabel={(option) => option.nome}
+      renderOption={(option, { selected }) => (
+        <React.Fragment>
+          <Checkbox
+            icon={icon}
+            checkedIcon={checkedIcon}
+            style={{ marginRight: 8 }}
+            checked={selected}
+          />
+          {option.nome}
+        </React.Fragment>
+      )}
+      style={{ 
+        width: "480px",
+        margin: ".2rem 0 .2rem .5rem" 
+        }}
+      renderInput={(params) => (
+        <TextField {...params} variant="outlined" label="Classificação"/>
+      )}
+    />
   );
-};
+}
 
 export default ClassificacaoSelect;

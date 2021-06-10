@@ -77,6 +77,13 @@ const ExcecoesModal = ({ data }) => {
             />
             <TextField
               variant="outlined"
+              disabled
+              label="Código aderido"
+              value={data?.codigo_aderido || ''}
+              className={classes.input}
+            />
+            <TextField
+              variant="outlined"
               label="Nome unidade"
               value={exception.nomeUnidade}
               onChange={(e, _) => {
