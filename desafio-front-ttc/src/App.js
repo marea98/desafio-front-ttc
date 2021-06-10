@@ -1,5 +1,5 @@
 import './App.css';
-import SimpleTabs from "./pages/home";
+import SimpleTabs from './pages/home';
 
 function App() {
   return (
