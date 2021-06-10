@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import GenericTable from '../components/tableComponent';
 import ClassificationComponent from '../components/classificationComponent';
 import SearchIcon from '@material-ui/icons/Search';
-import Visibility from '@material-ui/icons/Visibility';
+import classificacoesData from '../data/classificacoes';
 import aderidosData from '../data/aderidos';
 import produtosData from '../data/produtos';
 import excecoesData from '../data/excecoes';
@@ -23,7 +23,6 @@ import {
   Avatar,
   InputAdornment
 } from '@material-ui/core';
-import { PanoramaSharp } from '@material-ui/icons';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -81,6 +80,20 @@ const useStyles = makeStyles((theme) => ({
 const SimpleTabs = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [classificacoes, setClassificacoes] = useState(classificacoesData);
+  const alpha = Array.from(Array(26)).map((_, i) => i + 65);
+  const alphabet = alpha.map((x) => String.fromCharCode(x));
+
+  const removeClassificacao = (index) => {
+    let classificacoesRemoved = classificacoes.filter((x, i) => i !== index)
+    setClassificacoes(classificacoesRemoved);
+  }
+    
+   const addClassificacao = () => {
+    let classificacoesAdd = [...classificacoes];
+    classificacoesAdd.push({sigla: alphabet[classificacoes.length], nome: ''});
+    setClassificacoes(classificacoesAdd);
+  } 
 
   const [filteredSearch,setFilteredSearch] = useState("");
 
@@ -163,7 +176,7 @@ const SimpleTabs = () => {
                 <GenericTable data={excecoesData} Modal={ExcecoesModal} filteredSearch={filteredSearch}/>
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <ClassificationComponent />
+                <ClassificationComponent classificacoes={classificacoes} removeClassificacao={removeClassificacao}/>
               </TabPanel>
             </div>
           </Grid>
@@ -178,7 +191,7 @@ const SimpleTabs = () => {
             <Button
               variant="contained"
               style={{ backgroundColor: '#ffc629' }}
-              onClick={() => alert('Adicionar')}
+              onClick={() => addClassificacao('Adicionar')}
               className={classes.buttonsDown}
             >
               Adicionar
@@ -203,7 +216,7 @@ const SimpleTabs = () => {
             <Button
               variant="contained"
               style={{ backgroundColor: '#ffc629' }}
-              onClick={() => alert('Enviar')}
+              onClick={() => alert('Importar')}
               className={classes.buttonsDown}
             >
               Enviar
@@ -216,3 +229,4 @@ const SimpleTabs = () => {
 };
 
 export default SimpleTabs;
+

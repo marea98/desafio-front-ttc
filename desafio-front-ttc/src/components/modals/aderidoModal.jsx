@@ -75,6 +75,10 @@ const AderidoModal = ({ data }) => {
               value={data?.codigo || ''}
               className={classes.input}
             />
+            <ClassificacaoSelect
+              classific={data?.classificacao || ''}
+              className={classes.input}
+            />
             <TextField
               variant="outlined"
               label="Descrição"
@@ -82,10 +86,6 @@ const AderidoModal = ({ data }) => {
               onChange={(e, _) => {
                 setDescription({ ...description, descricao: e.target.value });
               }}
-              className={classes.input}
-            />
-            <ClassificacaoSelect
-              classific={data?.classificacao || ''}
               className={classes.input}
             />
             <TextField

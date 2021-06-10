@@ -82,6 +82,10 @@ const ExcecoesModal = ({ data }) => {
               value={data?.codigo_aderido || ''}
               className={classes.input}
             />
+            <ClassificacaoSelect
+              value={data?.classificacao || ''}
+              className={classes.input}
+            />
             <TextField
               variant="outlined"
               label="Nome unidade"
@@ -98,10 +102,6 @@ const ExcecoesModal = ({ data }) => {
               onChange={(e, _) => {
                 setException({ ...exception, prefixo: e.target.value });
               }}
-              className={classes.input}
-            />
-            <ClassificacaoSelect
-              value={data?.classificacao || ''}
               className={classes.input}
             />
             <Grid container item justify="flex-end">
