@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import GenericTable from '../components/tableComponent';
 import ClassificationComponent from '../components/classificationComponent';
@@ -10,7 +10,7 @@ import excecoesData from '../data/excecoes';
 import AderidoModal from '../components/modals/aderidoModal';
 import { styled } from '@material-ui/core/styles';
 import ProdutoModal from '../components/modals/produtoModal';
-import alphabet from '../utils/alphabet'
+import alphabet from '../utils/alphabet';
 import ExcecoesModal from '../components/modals/excecoesModal';
 import {
   Box,
@@ -23,7 +23,7 @@ import {
   makeStyles,
   Button,
   Avatar,
-  InputAdornment
+  InputAdornment,
 } from '@material-ui/core';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonsDown: {
     margin: '.5rem',
-    backgroundColor: '#ffc629' 
+    backgroundColor: '#ffc629',
   },
   header: {
     backgroundColor: '#ffc629',
@@ -90,17 +90,20 @@ const SimpleTabs = () => {
   const [classificacoes, setClassificacoes] = useState(classificacoesData);
 
   const removeClassificacao = (index) => {
-    let classificacoesRemoved = classificacoes.filter((x, i) => i !== index)
+    let classificacoesRemoved = classificacoes.filter((x, i) => i !== index);
     setClassificacoes(classificacoesRemoved);
-  }
-    
-   const addClassificacao = () => {
-    let classificacoesAdd = [...classificacoes];
-    classificacoesAdd.push({sigla: alphabet[classificacoes.length], nome: ''});
-    setClassificacoes(classificacoesAdd);
-  } 
+  };
 
-  const [filteredSearch,setFilteredSearch] = useState("");
+  const addClassificacao = () => {
+    let classificacoesAdd = [...classificacoes];
+    classificacoesAdd.push({
+      sigla: alphabet[classificacoes.length],
+      nome: '',
+    });
+    setClassificacoes(classificacoesAdd);
+  };
+
+  const [filteredSearch, setFilteredSearch] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -150,9 +153,11 @@ const SimpleTabs = () => {
               style={{ backgroundColor: '#ffff' }}
               InputProps={{
                 endAdornment: (
-                <InputAdornment position="end">
-                  <SearchIcon />
-                </InputAdornment> )}}
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
           <Grid item container justify="center">
@@ -172,16 +177,32 @@ const SimpleTabs = () => {
                 </Tabs>
               </AppBar>
               <TabPanel value={value} index={0}>
-                <GenericTable data={aderidosData} Modal={AderidoModal} filteredSearch={filteredSearch} isAderido/>
+                <GenericTable
+                  data={aderidosData}
+                  Modal={AderidoModal}
+                  filteredSearch={filteredSearch}
+                  isAderido
+                />
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <GenericTable data={produtosData} Modal={ProdutoModal} filteredSearch={filteredSearch}/>
+                <GenericTable
+                  data={produtosData}
+                  Modal={ProdutoModal}
+                  filteredSearch={filteredSearch}
+                />
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <GenericTable data={excecoesData} Modal={ExcecoesModal} filteredSearch={filteredSearch}/>
+                <GenericTable
+                  data={excecoesData}
+                  Modal={ExcecoesModal}
+                  filteredSearch={filteredSearch}
+                />
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <ClassificationComponent classificacoes={classificacoes} removeClassificacao={removeClassificacao}/>
+                <ClassificationComponent
+                  classificacoes={classificacoes}
+                  removeClassificacao={removeClassificacao}
+                />
               </TabPanel>
             </div>
           </Grid>
@@ -191,17 +212,16 @@ const SimpleTabs = () => {
             justify="flex-end"
             style={{ marginTop: '.5rem' }}
           >
-            {
-              value === 3 &&
-            <Button
-              variant="contained"
-              disabled={classificacoes.length >= 26}
-              onClick={() => addClassificacao('Adicionar')}
-              className={classes.buttonsDown}
-            >
-              Adicionar
-            </Button>
-            }
+            {value === 3 && (
+              <Button
+                variant="contained"
+                disabled={classificacoes.length >= 26}
+                onClick={() => addClassificacao('Adicionar')}
+                className={classes.buttonsDown}
+              >
+                Adicionar
+              </Button>
+            )}
             <Button
               variant="contained"
               onClick={() => alert('Exportar')}
@@ -210,8 +230,17 @@ const SimpleTabs = () => {
               Exportar
             </Button>
             <label htmlFor="contained-button-file">
-              <Input accept="image/*" id="contained-button-file" multiple type="file" />
-              <Button variant="contained" className={classes.buttonsDown} component="span">
+              <Input
+                accept="image/*"
+                id="contained-button-file"
+                multiple
+                type="file"
+              />
+              <Button
+                variant="contained"
+                className={classes.buttonsDown}
+                component="span"
+              >
                 Importar
               </Button>
             </label>
@@ -230,4 +259,3 @@ const SimpleTabs = () => {
 };
 
 export default SimpleTabs;
-

@@ -38,17 +38,17 @@ String.prototype.Capitalize = function () {
 const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
   const classes = useStyles();
 
+  const filteredData = () =>
+    filteredSearch === ''
+      ? data
+      : data.filter((x) => {
+          if (!isAderido) return x.codigo_aderido === filteredSearch;
 
-  const filteredData = () => filteredSearch === "" ? data : 
-  data.filter(x =>{
-    if (!isAderido) return x.codigo_aderido === filteredSearch
-  
-    return x.codigo === filteredSearch 
-  
-  } )
+          return x.codigo === filteredSearch;
+        });
 
   return (
-    <TableContainer component={Paper} style={{borderRadius: "0 0 8px 8px"}}>
+    <TableContainer component={Paper} style={{ borderRadius: '0 0 8px 8px' }}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>

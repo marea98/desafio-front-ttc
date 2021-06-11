@@ -1,7 +1,7 @@
 import React from 'react';
 import { Delete } from '@material-ui/icons';
 import { Grid, TextField, Typography, IconButton } from '@material-ui/core';
-import alphabet from '../utils/alphabet'
+import alphabet from '../utils/alphabet';
 
 const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
   return (
@@ -26,10 +26,10 @@ const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
               xs={4}
               alignItems="center"
               justify="space-between"
-              style={{ margin: '.2rem', padding: "0 3rem 0 3rem"}}
+              style={{ margin: '.2rem', padding: '0 3rem 0 3rem' }}
               key={i}
             >
-              <Grid item style={{width: "20px"}}>
+              <Grid item style={{ width: '20px' }}>
                 <Typography component="span" variant="h6">
                   <b>{alphabet[i]}</b>
                 </Typography>
@@ -38,9 +38,12 @@ const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
                 variant="outlined"
                 value={classificado.nome}
                 size="small"
-                style={{ backgroundColor: '#ffff'}}
+                style={{ backgroundColor: '#ffff' }}
               />
-              <IconButton aria-label="delete" onClick={() => removeClassificacao(i)}>
+              <IconButton
+                aria-label="delete"
+                onClick={() => removeClassificacao(i)}
+              >
                 <Delete htmlColor="#b71c1c" />
               </IconButton>
             </Grid>

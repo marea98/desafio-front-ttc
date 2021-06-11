@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classificacoes from '../data/classificacoes';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
@@ -29,15 +29,15 @@ const ClassificacaoSelect = () => {
           {option.nome}
         </React.Fragment>
       )}
-      style={{ 
-        width: "30rem",
-        margin: ".5rem" 
-        }}
+      style={{
+        width: '30rem',
+        margin: '.5rem',
+      }}
       renderInput={(params) => (
-        <TextField {...params} variant="outlined" label="Classificação"/>
+        <TextField {...params} variant="outlined" label="Classificação" />
       )}
     />
   );
-}
+};
 
 export default ClassificacaoSelect;
