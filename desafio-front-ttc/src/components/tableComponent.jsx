@@ -48,7 +48,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
   } )
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{borderRadius: "0 0 8px 8px"}}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>

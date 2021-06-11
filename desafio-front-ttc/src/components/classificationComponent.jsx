@@ -1,11 +1,9 @@
 import React from 'react';
 import { Delete } from '@material-ui/icons';
 import { Grid, TextField, Typography, IconButton } from '@material-ui/core';
+import alphabet from '../utils/alphabet'
 
 const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
-  const alpha = Array.from(Array(26)).map((_, i) => i + 65);
-  const alphabet = alpha.map((x) => String.fromCharCode(x));
-
   return (
     <Grid container>
       <Grid
@@ -28,7 +26,7 @@ const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
               xs={4}
               alignItems="center"
               justify="space-between"
-              style={{ margin: '.2rem', padding: "0 2rem 0 2rem"}}
+              style={{ margin: '.2rem', padding: "0 3rem 0 3rem"}}
               key={i}
             >
               <Grid item style={{width: "20px"}}>

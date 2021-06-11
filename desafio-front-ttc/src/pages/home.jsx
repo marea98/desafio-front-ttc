@@ -8,7 +8,9 @@ import aderidosData from '../data/aderidos';
 import produtosData from '../data/produtos';
 import excecoesData from '../data/excecoes';
 import AderidoModal from '../components/modals/aderidoModal';
+import { styled } from '@material-ui/core/styles';
 import ProdutoModal from '../components/modals/produtoModal';
+import alphabet from '../utils/alphabet'
 import ExcecoesModal from '../components/modals/excecoesModal';
 import {
   Box,
@@ -56,6 +58,10 @@ function a11yProps(index) {
   };
 }
 
+const Input = styled('input')({
+  display: 'none',
+});
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -63,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonsDown: {
     margin: '.5rem',
+    backgroundColor: '#ffc629' 
   },
   header: {
     backgroundColor: '#ffc629',
@@ -79,10 +86,8 @@ const useStyles = makeStyles((theme) => ({
 
 const SimpleTabs = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const [classificacoes, setClassificacoes] = useState(classificacoesData);
-  const alpha = Array.from(Array(26)).map((_, i) => i + 65);
-  const alphabet = alpha.map((x) => String.fromCharCode(x));
 
   const removeClassificacao = (index) => {
     let classificacoesRemoved = classificacoes.filter((x, i) => i !== index)
@@ -190,7 +195,7 @@ const SimpleTabs = () => {
               value === 3 &&
             <Button
               variant="contained"
-              style={{ backgroundColor: '#ffc629' }}
+              disabled={classificacoes.length >= 26}
               onClick={() => addClassificacao('Adicionar')}
               className={classes.buttonsDown}
             >
@@ -199,24 +204,20 @@ const SimpleTabs = () => {
             }
             <Button
               variant="contained"
-              style={{ backgroundColor: '#ffc629' }}
               onClick={() => alert('Exportar')}
               className={classes.buttonsDown}
             >
               Exportar
             </Button>
+            <label htmlFor="contained-button-file">
+              <Input accept="image/*" id="contained-button-file" multiple type="file" />
+              <Button variant="contained" className={classes.buttonsDown} component="span">
+                Importar
+              </Button>
+            </label>
             <Button
               variant="contained"
-              style={{ backgroundColor: '#ffc629' }}
-              onClick={() => alert('Importar')}
-              className={classes.buttonsDown}
-            >
-              Importar
-            </Button>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: '#ffc629' }}
-              onClick={() => alert('Importar')}
+              onClick={() => alert('Enviar')}
               className={classes.buttonsDown}
             >
               Enviar
