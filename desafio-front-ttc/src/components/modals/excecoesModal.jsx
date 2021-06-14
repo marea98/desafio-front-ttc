@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Edit } from '@material-ui/icons';
-import ClassificacaoSelect from '../classificacaoSelect';
+import ClassificacaoSelect from '../selects/classificacaoSelect';
 import {
   Grid,
   Button,

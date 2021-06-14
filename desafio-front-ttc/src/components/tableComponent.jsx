@@ -43,7 +43,6 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
       ? data
       : data.filter((x) => {
           if (!isAderido) return x.codigo_aderido === filteredSearch;
-
           return x.codigo === filteredSearch;
         });
 

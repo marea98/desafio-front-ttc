@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleTabs = () => {
+const Home = () => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [classifications, setclassifications] = useState(classificacoesData);
@@ -105,7 +105,7 @@ const SimpleTabs = () => {
 
   const [filteredSearch, setFilteredSearch] = useState('');
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue);
   };
 
@@ -247,4 +247,4 @@ const SimpleTabs = () => {
   );
 };
 
-export default SimpleTabs;
+export default Home;

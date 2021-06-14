@@ -1,5 +1,5 @@
 import React from 'react';
-import classificacoes from '../data/classificacoes';
+import classificacoes from '../../data/classificacoes';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -11,7 +11,6 @@ const checkedIcon = <CheckBoxIcon fontSize='small' />;
 
 const ClassificacaoSelect = ({ classific }) => {
   return (
-    <>
     <Autocomplete
       multiple
       limitTags={3}
@@ -39,7 +38,6 @@ const ClassificacaoSelect = ({ classific }) => {
         <TextField {...params} variant='outlined' label='Classificação' />
       )}
     />
-    </>
   );
 };
 
