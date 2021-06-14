@@ -8,6 +8,7 @@ import aderidosData from '../data/aderidos';
 import produtosData from '../data/produtos';
 import excecoesData from '../data/excecoes';
 import AderidoModal from '../components/modals/aderidoModal';
+import ProfileInfo from '../components/profileInfo';
 import { styled } from '@material-ui/core/styles';
 import ProdutoModal from '../components/modals/produtoModal';
 import alphabet from '../utils/alphabet';
@@ -22,7 +23,6 @@ import {
   AppBar,
   makeStyles,
   Button,
-  Avatar,
   InputAdornment,
 } from '@material-ui/core';
 function TabPanel(props) {
@@ -30,7 +30,7 @@ function TabPanel(props) {
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -38,7 +38,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box>
-          <Typography component="span">{children}</Typography>
+          <Typography component='span'>{children}</Typography>
         </Box>
       )}
     </div>
@@ -112,68 +112,58 @@ const SimpleTabs = () => {
   return (
     <>
       <Grid item xs={12} className={classes.header}>
-        <Typography component="span" variant="h4">
+        <Typography component='span' variant='h4'>
           Configuração TTC aderidos
         </Typography>
         <Grid
           container
-          justify="flex-end"
-          direction="row"
-          alignItems="center"
-          style={{ maxWidth: '300px', marginRight: '5px' }}
+          justify='flex-end'
+          direction='row'
+          alignItems='center'
+          dis
+          style={{ maxWidth: '300px' }}
         >
-          <Typography
-            component="span"
-            variant="overline"
-            style={{ marginRight: '10px', cursor: 'pointer' }}
-          >
-            Ednaldo Pereira
-          </Typography>
-          <Avatar style={{ cursor: 'pointer' }} className={classes.large} />
+          <ProfileInfo />
         </Grid>
       </Grid>
-      <Grid container style={{ height: '2rem' }}>
-        <Grid
-          container
-          direction="column"
-          style={{ padding: '2rem 10rem 0 10rem' }}
-        >
+      <Grid container justify='center' style={{ marginTop: '2rem' }}>
+        <Grid item container xs={10} direction='column'>
           <Grid
             item
-            justify="flex-end"
+            justify='flex-end'
             container
             style={{ marginBottom: '.5rem' }}
           >
             <TextField
               value={filteredSearch}
               onChange={(e) => setFilteredSearch(e.target.value)}
-              variant="outlined"
-              size="small"
-              placeholder="Buscar aderido"
+              variant='outlined'
+              size='small'
+              placeholder='Buscar aderido'
               style={{ backgroundColor: '#ffff' }}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end">
+                  <InputAdornment position='end'>
                     <SearchIcon />
                   </InputAdornment>
                 ),
               }}
             />
           </Grid>
-          <Grid item container justify="center">
+          <Grid item container justify='center'>
             <div className={classes.root}>
-              <AppBar position="static">
+              <AppBar position='static'>
                 <Tabs
                   value={value}
                   onChange={handleChange}
-                  aria-label="simple tabs example"
+                  aria-label='simple tabs example'
                   style={{ backgroundColor: '#ffc629', color: '#000' }}
-                  indicatorColor="secondary"
+                  indicatorColor='secondary'
                 >
-                  <Tab label="Aderidos" {...a11yProps(0)} />
-                  <Tab label="Produtos" {...a11yProps(1)} />
-                  <Tab label="Exceções" {...a11yProps(2)} />
-                  <Tab label="Classificações" {...a11yProps(3)} />
+                  <Tab label='Aderidos' {...a11yProps(0)} />
+                  <Tab label='Produtos' {...a11yProps(1)} />
+                  <Tab label='Exceções' {...a11yProps(2)} />
+                  <Tab label='Classificações' {...a11yProps(3)} />
                 </Tabs>
               </AppBar>
               <TabPanel value={value} index={0}>
@@ -209,12 +199,12 @@ const SimpleTabs = () => {
           <Grid
             container
             item
-            justify="flex-end"
+            justify='flex-end'
             style={{ marginTop: '.5rem' }}
           >
             {value === 3 && (
               <Button
-                variant="contained"
+                variant='contained'
                 disabled={classificacoes.length >= 26}
                 onClick={() => addClassificacao('Adicionar')}
                 className={classes.buttonsDown}
@@ -223,29 +213,29 @@ const SimpleTabs = () => {
               </Button>
             )}
             <Button
-              variant="contained"
+              variant='contained'
               onClick={() => alert('Exportar')}
               className={classes.buttonsDown}
             >
               Exportar
             </Button>
-            <label htmlFor="contained-button-file">
+            <label htmlFor='contained-button-file'>
               <Input
-                accept="image/*"
-                id="contained-button-file"
+                accept='image/*'
+                id='contained-button-file'
                 multiple
-                type="file"
+                type='file'
               />
               <Button
-                variant="contained"
+                variant='contained'
                 className={classes.buttonsDown}
-                component="span"
+                component='span'
               >
                 Importar
               </Button>
             </label>
             <Button
-              variant="contained"
+              variant='contained'
               onClick={() => alert('Enviar')}
               className={classes.buttonsDown}
             >

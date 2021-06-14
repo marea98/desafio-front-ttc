@@ -48,30 +48,30 @@ const AderidoModal = ({ data }) => {
   return (
     <div>
       <IconButton onClick={handleClickOpen}>
-        <Edit size="small" />
+        <Edit size='small' />
       </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id="form-dialog-title">
-          <Typography component="span" variant="h5">
+        <DialogTitle id='form-dialog-title'>
+          <Typography component='span' variant='h5'>
             Aderidos
           </Typography>
         </DialogTitle>
         <DialogContent>
           <Grid
             container
-            alignItems="flex-start"
-            justify="flex-start"
-            direction="column"
+            alignItems='flex-start'
+            justify='flex-start'
+            direction='column'
             style={{ padding: '0 .5rem .5rem .5rem' }}
           >
             <TextField
-              variant="outlined"
+              variant='outlined'
               disabled
-              label="Código"
+              label='Código'
               value={data?.codigo || ''}
               className={classes.input}
             />
@@ -80,8 +80,8 @@ const AderidoModal = ({ data }) => {
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Descrição"
+              variant='outlined'
+              label='Descrição'
               value={description.descricao}
               onChange={(e, _) => {
                 setDescription({ ...description, descricao: e.target.value });
@@ -89,24 +89,24 @@ const AderidoModal = ({ data }) => {
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Liberado"
+              variant='outlined'
+              label='Liberado'
               value={description.liberado}
               onChange={(e, _) => {
                 setDescription({ ...description, liberado: e.target.value });
               }}
               className={classes.input}
             />
-            <Grid container item justify="flex-end">
+            <Grid container item justify='flex-end'>
               <Button
-                variant="contained"
+                variant='contained'
                 onClick={handleClose}
                 className={classes.ButtonsAction}
               >
                 Voltar
               </Button>
               <Button
-                variant="contained"
+                variant='contained'
                 onClick={() => {
                   alert('Informações atualizadas');
                   handleClose();

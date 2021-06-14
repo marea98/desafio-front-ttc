@@ -6,15 +6,15 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+const icon = <CheckBoxOutlineBlankIcon fontSize='small' />;
+const checkedIcon = <CheckBoxIcon fontSize='small' />;
 
 const ClassificacaoSelect = () => {
   return (
     <Autocomplete
       multiple
       limitTags={3}
-      id="checkboxes-tags-demo"
+      id='checkboxes-tags-demo'
       options={classificacoes}
       disableCloseOnSelect
       getOptionLabel={(option) => option.nome}
@@ -34,7 +34,7 @@ const ClassificacaoSelect = () => {
         margin: '.5rem',
       }}
       renderInput={(params) => (
-        <TextField {...params} variant="outlined" label="Classificação" />
+        <TextField {...params} variant='outlined' label='Classificação' />
       )}
     />
   );

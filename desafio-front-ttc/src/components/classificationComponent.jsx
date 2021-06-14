@@ -9,8 +9,8 @@ const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
       <Grid
         container
         item
-        justify="flex-start"
-        direction="column"
+        justify='flex-start'
+        direction='column'
         style={{
           padding: '1rem 2.5rem .5rem 2.5rem',
           minHeight: '23rem',
@@ -23,28 +23,31 @@ const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
             <Grid
               container
               item
-              xs={4}
-              alignItems="center"
-              justify="space-between"
-              style={{ margin: '.2rem', padding: '0 3rem 0 3rem' }}
+              sm={8}
+              md={5}
+              lg={4}
+              alignItems='center'
+              justify='space-around'
+              direction='row'
+              style={{ margin: '.2rem 0' }}
               key={i}
             >
               <Grid item style={{ width: '20px' }}>
-                <Typography component="span" variant="h6">
+                <Typography component='span' variant='h6'>
                   <b>{alphabet[i]}</b>
                 </Typography>
               </Grid>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 value={classificado.nome}
-                size="small"
+                size='small'
                 style={{ backgroundColor: '#ffff' }}
               />
               <IconButton
-                aria-label="delete"
+                aria-label='delete'
                 onClick={() => removeClassificacao(i)}
               >
-                <Delete htmlColor="#b71c1c" />
+                <Delete htmlColor='#b71c1c' />
               </IconButton>
             </Grid>
           );
