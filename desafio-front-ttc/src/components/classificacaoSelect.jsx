@@ -9,12 +9,14 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 const icon = <CheckBoxOutlineBlankIcon fontSize='small' />;
 const checkedIcon = <CheckBoxIcon fontSize='small' />;
 
-const ClassificacaoSelect = () => {
+const ClassificacaoSelect = ({ classific }) => {
   return (
+    <>
     <Autocomplete
       multiple
       limitTags={3}
       id='checkboxes-tags-demo'
+      defaultValue={[classificacoes.find((x) => x.nome === classific)]}
       options={classificacoes}
       disableCloseOnSelect
       getOptionLabel={(option) => option.nome}
@@ -37,6 +39,7 @@ const ClassificacaoSelect = () => {
         <TextField {...params} variant='outlined' label='Classificação' />
       )}
     />
+    </>
   );
 };
 

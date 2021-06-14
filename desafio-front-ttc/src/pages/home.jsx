@@ -120,7 +120,6 @@ const SimpleTabs = () => {
           justify='flex-end'
           direction='row'
           alignItems='center'
-          dis
           style={{ maxWidth: '300px' }}
         >
           <ProfileInfo />
