@@ -83,7 +83,7 @@ const ExcecoesModal = ({ data }) => {
               className={classes.input}
             />
             <ClassificacaoSelect
-              value={data?.classificacao || ''}
+              classific={data?.classificacao || ''}
               className={classes.input}
             />
             <TextField
