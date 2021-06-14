@@ -87,20 +87,20 @@ const useStyles = makeStyles((theme) => ({
 const SimpleTabs = () => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [classificacoes, setClassificacoes] = useState(classificacoesData);
+  const [classifications, setclassifications] = useState(classificacoesData);
 
-  const removeClassificacao = (index) => {
-    let classificacoesRemoved = classificacoes.filter((x, i) => i !== index);
-    setClassificacoes(classificacoesRemoved);
+  const removeClassification = (index) => {
+    let removedClassifications = classifications.filter((x, i) => i !== index);
+    setclassifications(removedClassifications);
   };
 
   const addClassificacao = () => {
-    let classificacoesAdd = [...classificacoes];
+    let classificacoesAdd = [...classifications];
     classificacoesAdd.push({
-      sigla: alphabet[classificacoes.length],
+      sigla: alphabet[classifications.length],
       nome: '',
     });
-    setClassificacoes(classificacoesAdd);
+    setclassifications(classificacoesAdd);
   };
 
   const [filteredSearch, setFilteredSearch] = useState('');
@@ -189,8 +189,8 @@ const SimpleTabs = () => {
               </TabPanel>
               <TabPanel value={value} index={3}>
                 <ClassificationComponent
-                  classificacoes={classificacoes}
-                  removeClassificacao={removeClassificacao}
+                  classifications={classifications}
+                  removeClassification={removeClassification}
                 />
               </TabPanel>
             </div>
@@ -204,7 +204,7 @@ const SimpleTabs = () => {
             {value === 3 && (
               <Button
                 variant='contained'
-                disabled={classificacoes.length >= 26}
+                disabled={classifications.length >= 26}
                 onClick={() => addClassificacao('Adicionar')}
                 className={classes.buttonsDown}
               >

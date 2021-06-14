@@ -3,7 +3,7 @@ import { Delete } from '@material-ui/icons';
 import { Grid, TextField, Typography, IconButton } from '@material-ui/core';
 import alphabet from '../utils/alphabet';
 
-const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
+const ClassificationComponent = ({ classifications, removeClassification }) => {
   return (
     <Grid container>
       <Grid
@@ -18,7 +18,7 @@ const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
           overflow: 'auto',
         }}
       >
-        {classificacoes.map((classificado, i) => {
+        {classifications.map((classified, i) => {
           return (
             <Grid
               container
@@ -39,13 +39,13 @@ const ClassificationComponent = ({ classificacoes, removeClassificacao }) => {
               </Grid>
               <TextField
                 variant='outlined'
-                value={classificado.nome}
+                value={classified.nome}
                 size='small'
                 style={{ backgroundColor: '#ffff' }}
               />
               <IconButton
                 aria-label='delete'
-                onClick={() => removeClassificacao(i)}
+                onClick={() => removeClassification(i)}
               >
                 <Delete htmlColor='#b71c1c' />
               </IconButton>
