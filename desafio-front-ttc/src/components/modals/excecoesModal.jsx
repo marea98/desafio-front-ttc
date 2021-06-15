@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Edit } from '@material-ui/icons';
-import ClassificacaoSelect from '../classificacaoSelect';
+import ClassificacaoSelect from '../selects/classificacaoSelect';
 import {
   Grid,
   Button,
@@ -48,47 +48,47 @@ const ExcecoesModal = ({ data }) => {
   return (
     <div>
       <IconButton onClick={handleClickOpen}>
-        <Edit size="small" />
+        <Edit size='small' />
       </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id="form-dialog-title">
-          <Typography component="span" variant="h5">
+        <DialogTitle id='form-dialog-title'>
+          <Typography component='span' variant='h5'>
             Aderidos
           </Typography>
         </DialogTitle>
         <DialogContent>
           <Grid
             container
-            alignItems="flex-start"
-            justify="flex-start"
-            direction="column"
+            alignItems='flex-start'
+            justify='flex-start'
+            direction='column'
             style={{ padding: '0 .5rem .5rem .5rem' }}
           >
             <TextField
-              variant="outlined"
+              variant='outlined'
               disabled
-              label="Código"
+              label='Código'
               value={data?.codigo || ''}
               className={classes.input}
             />
             <TextField
-              variant="outlined"
+              variant='outlined'
               disabled
-              label="Código aderido"
+              label='Código aderido'
               value={data?.codigo_aderido || ''}
               className={classes.input}
             />
             <ClassificacaoSelect
-              value={data?.classificacao || ''}
+              classific={data?.classificacao || ''}
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Nome unidade"
+              variant='outlined'
+              label='Nome unidade'
               value={exception.nomeUnidade}
               onChange={(e, _) => {
                 setException({ ...exception, nomeUnidade: e.target.value });
@@ -96,24 +96,24 @@ const ExcecoesModal = ({ data }) => {
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Prefixo"
+              variant='outlined'
+              label='Prefixo'
               value={exception.prefixo}
               onChange={(e, _) => {
                 setException({ ...exception, prefixo: e.target.value });
               }}
               className={classes.input}
             />
-            <Grid container item justify="flex-end">
+            <Grid container item justify='flex-end'>
               <Button
-                variant="contained"
+                variant='contained'
                 onClick={handleClose}
                 className={classes.ButtonsAction}
               >
                 Voltar
               </Button>
               <Button
-                variant="contained"
+                variant='contained'
                 style={{ backgroundColor: '#ffc629' }}
                 onClick={() => {
                   alert('Informações atualizadas');

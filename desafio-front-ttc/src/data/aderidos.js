@@ -7,7 +7,7 @@ const aderidosData = [
   },
   {
     codigo: '2',
-    descricao: 'Bairro',
+    descricao: 'descrição 2',
     classificacao: 'Bairro',
     liberado: 'Sim',
   },

@@ -43,13 +43,12 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
       ? data
       : data.filter((x) => {
           if (!isAderido) return x.codigo_aderido === filteredSearch;
-
           return x.codigo === filteredSearch;
         });
 
   return (
     <TableContainer component={Paper} style={{ borderRadius: '0 0 8px 8px' }}>
-      <Table className={classes.table} aria-label="customized table">
+      <Table className={classes.table} aria-label='customized table'>
         <TableHead>
           <TableRow>
             {Object.keys(data[0]).map((column, i) => (
@@ -57,7 +56,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
                 {column.Capitalize()}
               </StyledTableCell>
             ))}
-            <StyledTableCell align="right">Visualizar</StyledTableCell>
+            <StyledTableCell align='right'>Editar</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -76,7 +75,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
                   );
                 })}
 
-                <StyledTableCell align="right" style={{ padding: '0px' }}>
+                <StyledTableCell align='right' style={{ padding: '0px' }}>
                   <Modal data={row} />
                 </StyledTableCell>
               </TableRow>

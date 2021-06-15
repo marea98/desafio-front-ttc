@@ -49,43 +49,43 @@ const ProdutoModal = ({ data }) => {
   return (
     <div>
       <IconButton onClick={handleClickOpen}>
-        <Edit size="small" />
+        <Edit size='small' />
       </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id="form-dialog-title">
-          <Typography component="span" variant="h5">
+        <DialogTitle id='form-dialog-title'>
+          <Typography component='span' variant='h5'>
             Produto
           </Typography>
         </DialogTitle>
         <DialogContent>
           <Grid
             container
-            alignItems="flex-start"
-            justify="flex-start"
-            direction="column"
+            alignItems='flex-start'
+            justify='flex-start'
+            direction='column'
             style={{ padding: '0 .5rem .5rem .5rem' }}
           >
             <TextField
-              variant="outlined"
+              variant='outlined'
               disabled
-              label="Código"
+              label='Código'
               value={data?.codigo || ''}
               className={classes.input}
             />
             <TextField
-              variant="outlined"
+              variant='outlined'
               disabled
-              label="Código aderido"
+              label='Código aderido'
               value={data?.codigo_aderido || ''}
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Nome do produto"
+              variant='outlined'
+              label='Nome do produto'
               value={product.nomeProduto}
               onChange={(e, _) => {
                 setProduct({ ...product, nomeProduto: e.target.value });
@@ -93,8 +93,8 @@ const ProdutoModal = ({ data }) => {
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Markup minimo"
+              variant='outlined'
+              label='Markup minimo'
               value={product.markupMinimo}
               onChange={(e, _) => {
                 setProduct({ ...product, markupMinimo: e.target.value });
@@ -102,8 +102,8 @@ const ProdutoModal = ({ data }) => {
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Markup maximo"
+              variant='outlined'
+              label='Markup maximo'
               value={product.markupMaximo}
               onChange={(e, _) => {
                 setProduct({ ...product, markupMaximo: e.target.value });
@@ -111,24 +111,24 @@ const ProdutoModal = ({ data }) => {
               className={classes.input}
             />
             <TextField
-              variant="outlined"
-              label="Prefixo"
+              variant='outlined'
+              label='Prefixo'
               value={product.prefixo}
               onChange={(e, _) => {
                 setProduct({ ...product, prefixo: e.target.value });
               }}
               className={classes.input}
             />
-            <Grid container item justify="flex-end">
+            <Grid container item justify='flex-end'>
               <Button
-                variant="contained"
+                variant='contained'
                 onClick={handleClose}
                 className={classes.ButtonsAction}
               >
                 Voltar
               </Button>
               <Button
-                variant="contained"
+                variant='contained'
                 style={{ backgroundColor: '#ffc629' }}
                 className={classes.ButtonsAction}
                 onClick={() => {
