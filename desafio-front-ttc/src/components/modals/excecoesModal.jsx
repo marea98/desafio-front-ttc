@@ -57,7 +57,7 @@ const ExcecoesModal = ({ data }) => {
       >
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
-            Aderidos
+            Exceções
           </Typography>
         </DialogTitle>
         <DialogContent>
