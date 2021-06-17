@@ -1,7 +1,7 @@
 const classificacoesData = [
   {
     sigla: 'A',
-    nome: 'Bairro',
+    nome: 'Bairro'
   },
   {
     sigla: 'B',

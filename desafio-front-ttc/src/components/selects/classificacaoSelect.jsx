@@ -1,5 +1,5 @@
 import React from 'react';
-import classificacoes from '../../data/classificacoes';
+import allClassifications from '../../data/classificacoes';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -9,14 +9,16 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 const icon = <CheckBoxOutlineBlankIcon fontSize='small' />;
 const checkedIcon = <CheckBoxIcon fontSize='small' />;
 
-const ClassificacaoSelect = ({ classific }) => {
+const ClassificacaoSelect = ({ classifications }) => {
   return (
     <Autocomplete
       multiple
       limitTags={3}
       id='checkboxes-tags-demo'
-      defaultValue={[classificacoes.find((x) => x.nome === classific)]}
-      options={classificacoes}
+      defaultValue={allClassifications.filter((x) =>
+        classifications.some((y) => y.nome === x.nome)
+      )}
+      options={allClassifications}
       disableCloseOnSelect
       getOptionLabel={(option) => option.nome}
       renderOption={(option, { selected }) => (

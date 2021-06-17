@@ -76,7 +76,7 @@ const AderidoModal = ({ data }) => {
               className={classes.input}
             />
             <ClassificacaoSelect
-              classific={data?.classificacao || ''}
+              classifications={data?.classificacao || []}
               className={classes.input}
             />
             <TextField
@@ -95,6 +95,20 @@ const AderidoModal = ({ data }) => {
               onChange={(e, _) => {
                 setDescription({ ...description, liberado: e.target.value });
               }}
+              className={classes.input}
+            />
+            <TextField
+              variant='outlined'
+              disabled
+              label='Carência falso foco'
+              value={data?.carencia_do_falso_foco || ''}
+              className={classes.input}
+            />
+            <TextField
+              variant='outlined'
+              disabled
+              label='Frequência pesquisa'
+              value={data?.frequencia_pesquisa || ''}
               className={classes.input}
             />
             <Grid container item justify='flex-end'>

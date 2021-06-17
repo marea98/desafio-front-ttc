@@ -201,16 +201,14 @@ const Home = () => {
             justify='flex-end'
             style={{ marginTop: '.5rem' }}
           >
-            {value === 3 && (
-              <Button
-                variant='contained'
-                disabled={classifications.length >= 26}
-                onClick={() => addClassificacao('Adicionar')}
-                className={classes.buttonsDown}
-              >
-                Adicionar
-              </Button>
-            )}
+            <Button
+              variant='contained'
+              disabled={classifications.length >= 26}
+              onClick={() => addClassificacao('Adicionar')}
+              className={classes.buttonsDown}
+            >
+              Adicionar
+            </Button>
             <Button
               variant='contained'
               onClick={() => alert('Exportar')}
