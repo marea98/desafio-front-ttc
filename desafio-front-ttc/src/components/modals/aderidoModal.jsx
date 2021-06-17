@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ClassificacaoSelect from '../selects/classificacaoSelect';
-import { Edit } from '@material-ui/icons';
+import { SuccessToast } from '../toasts/successfullToast';
 import {
   Grid,
   Button,
@@ -8,7 +8,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  IconButton,
   makeStyles,
   Typography,
 } from '@material-ui/core';
@@ -23,42 +22,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AderidoModal = ({ data, isCreate, open, setOpen }) => {
+const AderidoModal = ({ data, isCreate, isOpen, close }) => {
   const classes = useStyles();
-  // const [open, setOpen] = useState(false);
-  const [adheredModel, setAdheredModel] = useState({
+
+  const [adhered, setAdhered] = useState({
+    codigo: data?.codigo || '',
+    nome: data?.nome || '',
     descricao: data?.descricao || '',
-    classificacao: data?.classificacao || '',
+    classificacao: data?.classificacao || [],
     liberado: data?.liberado || '',
     carencia_do_falso_foco: data?.carencia_do_falso_foco || '',
     frequencia_pesquisa: data?.frequencia_pesquisa || '',
   });
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setAdheredModel({
-      descricao: data?.descricao || '',
-      classificacao: data?.classificacao || '',
-      liberado: data?.liberado || '',
-      carencia_do_falso_foco: data?.carencia_do_falso_foco || '',
-      frequencia_pesquisa: data?.frequencia_pesquisa || '',
-    });
-    setOpen(false);
-  };
-
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <Edit size='small' />
-      </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-      >
+      <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
             Aderidos
@@ -74,43 +53,52 @@ const AderidoModal = ({ data, isCreate, open, setOpen }) => {
           >
             {!isCreate && (
               <TextField
-              variant='outlined'
-              disabled
-              label='Código'
-              value={data?.codigo || ''}
+                variant='outlined'
+                disabled
+                label='Código'
+                value={adhered.codigo}
+                className={classes.input}
+              />
+            )}
+
+            <ClassificacaoSelect
+              classifications={adhered.classificacao}
               className={classes.input}
             />
-            )}
-            
-            <ClassificacaoSelect
-              classifications={data?.classificacao || []}
+            <TextField
+              variant='outlined'
+              label='Nome'
+              value={adhered.nome}
+              onChange={(e, _) => {
+                setAdhered({ ...adhered, nome: e.target.value });
+              }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Descrição'
-              value={adheredModel.descricao}
+              value={adhered.descricao}
               onChange={(e, _) => {
-                setAdheredModel({ ...adheredModel, descricao: e.target.value });
+                setAdhered({ ...adhered, descricao: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Liberado'
-              value={adheredModel.liberado}
+              value={adhered.liberado}
               onChange={(e, _) => {
-                setAdheredModel({ ...adheredModel, liberado: e.target.value });
+                setAdhered({ ...adhered, liberado: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Carência falso foco'
-              value={adheredModel.carencia_do_falso_foco || ''}
+              value={adhered.carencia_do_falso_foco}
               onChange={(e, _) => {
-                setAdheredModel({
-                  ...adheredModel,
+                setAdhered({
+                  ...adhered,
                   carencia_do_falso_foco: e.target.value,
                 });
               }}
@@ -119,10 +107,10 @@ const AderidoModal = ({ data, isCreate, open, setOpen }) => {
             <TextField
               variant='outlined'
               label='Frequência pesquisa'
-              value={adheredModel.frequencia_pesquisa || ''}
+              value={adhered.frequencia_pesquisa}
               onChange={(e, _) => {
-                setAdheredModel({
-                  ...adheredModel,
+                setAdhered({
+                  ...adhered,
                   frequencia_pesquisa: e.target.value,
                 });
               }}
@@ -131,7 +119,7 @@ const AderidoModal = ({ data, isCreate, open, setOpen }) => {
             <Grid container item justify='flex-end'>
               <Button
                 variant='contained'
-                onClick={handleClose}
+                onClick={close}
                 className={classes.ButtonsAction}
               >
                 Voltar
@@ -139,8 +127,10 @@ const AderidoModal = ({ data, isCreate, open, setOpen }) => {
               <Button
                 variant='contained'
                 onClick={() => {
-                  alert('Informações atualizadas');
-                  handleClose();
+                  SuccessToast(
+                    isCreate ? 'Criado com sucesso!' : 'Atualizado com sucesso!'
+                  );
+                  close();
                 }}
                 style={{ backgroundColor: '#ffc629' }}
                 className={classes.ButtonsAction}

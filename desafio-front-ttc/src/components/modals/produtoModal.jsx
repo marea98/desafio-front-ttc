@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Edit } from '@material-ui/icons';
+import { SuccessToast } from '../toasts/successfullToast';
 import {
   Grid,
   Button,
@@ -7,7 +7,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  IconButton,
   makeStyles,
   Typography,
 } from '@material-ui/core';
@@ -22,40 +21,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProdutoModal = ({ data }) => {
+const ProdutoModal = ({ data, isOpen, close }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+
   const [product, setProduct] = useState({
-    nomeProduto: data.nome_do_produto,
-    markupMinimo: data.markup_minimo,
-    markupMaximo: data.markup_maximo,
-    prefixo: data.prefixo,
+    codigo: data?.codigo || '',
+    codigo_aderido: data?.codigo_aderido || '',
+    nome: data?.nome || '',
+    prefixo: data?.prefixo || '',
   });
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setProduct({
-      nomeProduto: data.nome_do_produto,
-      markupMinimo: data.markup_minimo,
-      markupMaximo: data.markup_maximo,
-      prefixo: data.prefixo,
-    });
-    setOpen(false);
-  };
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <Edit size='small' />
-      </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-      >
+      <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
             Produto
@@ -73,40 +51,22 @@ const ProdutoModal = ({ data }) => {
               variant='outlined'
               disabled
               label='Código'
-              value={data?.codigo || ''}
+              value={product?.codigo}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               disabled
               label='Código aderido'
-              value={data?.codigo_aderido || ''}
+              value={product?.codigo_aderido}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              label='Nome do produto'
-              value={product.nomeProduto}
+              label='Nome '
+              value={product.nome}
               onChange={(e, _) => {
-                setProduct({ ...product, nomeProduto: e.target.value });
-              }}
-              className={classes.input}
-            />
-            <TextField
-              variant='outlined'
-              label='Markup minimo'
-              value={product.markupMinimo}
-              onChange={(e, _) => {
-                setProduct({ ...product, markupMinimo: e.target.value });
-              }}
-              className={classes.input}
-            />
-            <TextField
-              variant='outlined'
-              label='Markup maximo'
-              value={product.markupMaximo}
-              onChange={(e, _) => {
-                setProduct({ ...product, markupMaximo: e.target.value });
+                setProduct({ ...product, nome: e.target.value });
               }}
               className={classes.input}
             />
@@ -122,7 +82,7 @@ const ProdutoModal = ({ data }) => {
             <Grid container item justify='flex-end'>
               <Button
                 variant='contained'
-                onClick={handleClose}
+                onClick={close}
                 className={classes.ButtonsAction}
               >
                 Voltar
@@ -130,11 +90,11 @@ const ProdutoModal = ({ data }) => {
               <Button
                 variant='contained'
                 style={{ backgroundColor: '#ffc629' }}
-                className={classes.ButtonsAction}
                 onClick={() => {
-                  alert('Informações atualizadas');
-                  handleClose();
+                  SuccessToast('Atualizado com sucesso!');
+                  close();
                 }}
+                className={classes.ButtonsAction}
               >
                 Salvar
               </Button>

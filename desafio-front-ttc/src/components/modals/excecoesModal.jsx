@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Edit } from '@material-ui/icons';
 import ClassificacaoSelect from '../selects/classificacaoSelect';
+import { SuccessToast } from '../toasts/successfullToast';
 import {
   Grid,
   Button,
@@ -8,7 +8,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  IconButton,
   makeStyles,
   Typography,
 } from '@material-ui/core';
@@ -23,38 +22,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ExcecoesModal = ({ data }) => {
+const ExcecoesModal = ({ data, isOpen, close }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+
   const [exception, setException] = useState({
-    nomeUnidade: data.nome_unidade,
-    prefixo: data.prefixo,
-    classificacao: data.classificacao,
+    codigo: data?.codigo || '',
+    codigo_aderido: data?.codigo_aderido || '',
+    nome_unidade: data?.nome_unidade || '',
+    prefixo: data?.prefixo || '',
+    classificacao: data?.classificacao || '',
   });
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setException({
-      nomeUnidade: data.nome_unidade,
-      prefixo: data.prefixo,
-      classificacao: data.classificacao,
-    });
-    setOpen(false);
-  };
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <Edit size='small' />
-      </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-      >
+      <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
             Exceções
@@ -72,26 +53,26 @@ const ExcecoesModal = ({ data }) => {
               variant='outlined'
               disabled
               label='Código'
-              value={data?.codigo || ''}
+              value={exception?.codigo}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               disabled
               label='Código aderido'
-              value={data?.codigo_aderido || ''}
+              value={exception?.codigo_aderido}
               className={classes.input}
             />
             <ClassificacaoSelect
-              classific={data?.classificacao || ''}
+              classifications={exception?.classificacao}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Nome unidade'
-              value={exception.nomeUnidade}
+              value={exception.nome_unidade}
               onChange={(e, _) => {
-                setException({ ...exception, nomeUnidade: e.target.value });
+                setException({ ...exception, nome_unidade: e.target.value });
               }}
               className={classes.input}
             />
@@ -107,7 +88,7 @@ const ExcecoesModal = ({ data }) => {
             <Grid container item justify='flex-end'>
               <Button
                 variant='contained'
-                onClick={handleClose}
+                onClick={close}
                 className={classes.ButtonsAction}
               >
                 Voltar
@@ -116,8 +97,8 @@ const ExcecoesModal = ({ data }) => {
                 variant='contained'
                 style={{ backgroundColor: '#ffc629' }}
                 onClick={() => {
-                  alert('Informações atualizadas');
-                  handleClose();
+                  SuccessToast('Atualizado com sucesso!');
+                  close();
                 }}
                 className={classes.ButtonsAction}
               >

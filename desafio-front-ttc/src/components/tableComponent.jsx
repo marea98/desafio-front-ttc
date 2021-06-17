@@ -19,6 +19,7 @@ import {
   KeyboardArrowRight,
   KeyboardArrowLeft,
   LastPage,
+  Edit,
 } from '@material-ui/icons';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -53,11 +54,19 @@ String.prototype.Capitalize = function () {
   );
 };
 
-const GenericTable = ({ data, Modal, filteredSearch, isAderido, openModal, setOpenModal }) => {
+const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
   const classes = useStyles();
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const [open, setOpen] = useState(false);
+  const [model, setModel] = useState();
+
+  const handleOpenModal = (data) => {
+    setModel(data);
+    setOpen(true);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -205,11 +214,9 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido, openModal, setOp
                     })}
 
                     <StyledTableCell align='right' style={{ padding: '0px' }}>
-                      <Modal 
-                      data={row} 
-                      open={openModal}
-                      setOpen={setOpenModal}
-                      />
+                      <IconButton onClick={() => handleOpenModal(row)}>
+                        <Edit size='small' />
+                      </IconButton>
                     </StyledTableCell>
                   </TableRow>
                 );
@@ -228,6 +235,9 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido, openModal, setOp
         onChangeRowsPerPage={handleChangeRowsPerPage}
         ActionsComponent={TablePaginationActions}
       />
+      {open && (
+        <Modal data={model} isOpen={open} close={() => setOpen(false)} />
+      )}
     </>
   );
 };

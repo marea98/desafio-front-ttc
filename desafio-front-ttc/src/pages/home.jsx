@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import GenericTable from '../components/tableComponent';
 import ClassificationComponent from '../components/classificationComponent';
@@ -13,6 +13,7 @@ import { styled } from '@material-ui/core/styles';
 import ProdutoModal from '../components/modals/produtoModal';
 import alphabet from '../utils/alphabet';
 import ExcecoesModal from '../components/modals/excecoesModal';
+import { FailToast, SuccessToast } from '../components/toasts/successfullToast';
 import {
   Box,
   Grid,
@@ -87,8 +88,9 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const [currentTab, setCurrentTab] = useState(0);
+  const [selectedFile, setSelectedFile] = useState();
+  const [open, setOpen] = useState(false);
   const [classifications, setclassifications] = useState(classificacoesData);
-  const [isOpenAdhered, setIsOpenAdhered] = useState(false);
 
   const removeClassification = (index) => {
     let removedClassifications = classifications.filter((x, i) => i !== index);
@@ -111,10 +113,34 @@ const Home = () => {
   };
 
   const handleCreateButton = () => {
-    if (currentTab === 0) return alert('Aderido criado com sucesso');
+    if (currentTab === 0) {
+      return setOpen(true);
+    }
 
     return addClassificacao();
   };
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+
+    setSelectedFile(e.target.files[0]);
+  };
+
+  useEffect(() => {
+    if (selectedFile) {
+      const fileType = selectedFile['type'];
+      const acceptFiles = ['image/jpg', 'image/jpeg', 'image/png'];
+      const maxFileSize = 512000;
+
+      if (selectedFile.size > maxFileSize) {
+        FailToast('O arquivo não deve ultrapassar 500kb');
+      } else if (!acceptFiles.includes(fileType)) {
+        FailToast('O arquivo deve ser .png, .jpeg, ou .jpg');
+      } else {
+        SuccessToast('Importado com sucesso!');
+      }
+    }
+  }, [selectedFile]);
 
   return (
     <>
@@ -176,8 +202,6 @@ const Home = () => {
                 <GenericTable
                   data={aderidosData}
                   Modal={AderidoModal}
-                  openModal={isOpenAdhered}
-                  setOpenModal={setIsOpenAdhered}
                   filteredSearch={filteredSearch}
                   isAderido
                 />
@@ -231,10 +255,11 @@ const Home = () => {
             </Button>
             <label htmlFor='contained-button-file'>
               <Input
-                accept='image/*'
+                accept='.jpg,.png,.jpeg'
                 id='contained-button-file'
                 multiple
                 type='file'
+                onChange={onSelectFile}
               />
               <Button
                 variant='contained'
@@ -246,7 +271,7 @@ const Home = () => {
             </label>
             <Button
               variant='contained'
-              onClick={() => alert('Enviar')}
+              onClick={() => FailToast('Falha ao enviar, sem conexão :c')}
               className={classes.buttonsDown}
             >
               Enviar
@@ -254,6 +279,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </Grid>
+      <AderidoModal isCreate isOpen={open} close={() => setOpen(false)} />
     </>
   );
 };
