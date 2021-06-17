@@ -88,6 +88,7 @@ const Home = () => {
   const classes = useStyles();
   const [currentTab, setCurrentTab] = useState(0);
   const [classifications, setclassifications] = useState(classificacoesData);
+  const [isOpenAdhered, setIsOpenAdhered] = useState(false);
 
   const removeClassification = (index) => {
     let removedClassifications = classifications.filter((x, i) => i !== index);
@@ -175,6 +176,8 @@ const Home = () => {
                 <GenericTable
                   data={aderidosData}
                   Modal={AderidoModal}
+                  openModal={isOpenAdhered}
+                  setOpenModal={setIsOpenAdhered}
                   filteredSearch={filteredSearch}
                   isAderido
                 />

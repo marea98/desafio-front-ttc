@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AderidoModal = ({ data }) => {
+const AderidoModal = ({ data, isCreate, open, setOpen }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [adheredModel, setAdheredModel] = useState({
     descricao: data?.descricao || '',
     classificacao: data?.classificacao || '',
@@ -72,13 +72,16 @@ const AderidoModal = ({ data }) => {
             direction='column'
             style={{ padding: '0 .5rem .5rem .5rem' }}
           >
-            <TextField
+            {!isCreate && (
+              <TextField
               variant='outlined'
               disabled
               label='Código'
               value={data?.codigo || ''}
               className={classes.input}
             />
+            )}
+            
             <ClassificacaoSelect
               classifications={data?.classificacao || []}
               className={classes.input}

@@ -53,7 +53,7 @@ String.prototype.Capitalize = function () {
   );
 };
 
-const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
+const GenericTable = ({ data, Modal, filteredSearch, isAderido, openModal, setOpenModal }) => {
   const classes = useStyles();
 
   const [page, setPage] = useState(0);
@@ -205,7 +205,11 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
                     })}
 
                     <StyledTableCell align='right' style={{ padding: '0px' }}>
-                      <Modal data={row} />
+                      <Modal 
+                      data={row} 
+                      open={openModal}
+                      setOpen={setOpenModal}
+                      />
                     </StyledTableCell>
                   </TableRow>
                 );
