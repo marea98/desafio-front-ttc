@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState(0);
   const [classifications, setclassifications] = useState(classificacoesData);
 
   const removeClassification = (index) => {
@@ -106,7 +106,13 @@ const Home = () => {
   const [filteredSearch, setFilteredSearch] = useState('');
 
   const handleChange = (_, newValue) => {
-    setValue(newValue);
+    setCurrentTab(newValue);
+  };
+
+  const handleCreateButton = () => {
+    if (currentTab === 0) return alert('Aderido criado com sucesso');
+
+    return addClassificacao();
   };
 
   return (
@@ -153,7 +159,7 @@ const Home = () => {
             <div className={classes.root}>
               <AppBar position='static'>
                 <Tabs
-                  value={value}
+                  value={currentTab}
                   onChange={handleChange}
                   aria-label='simple tabs example'
                   style={{ backgroundColor: '#ffc629', color: '#000' }}
@@ -165,7 +171,7 @@ const Home = () => {
                   <Tab label='Classificações' {...a11yProps(3)} />
                 </Tabs>
               </AppBar>
-              <TabPanel value={value} index={0}>
+              <TabPanel value={currentTab} index={0}>
                 <GenericTable
                   data={aderidosData}
                   Modal={AderidoModal}
@@ -173,21 +179,21 @@ const Home = () => {
                   isAderido
                 />
               </TabPanel>
-              <TabPanel value={value} index={1}>
+              <TabPanel value={currentTab} index={1}>
                 <GenericTable
                   data={produtosData}
                   Modal={ProdutoModal}
                   filteredSearch={filteredSearch}
                 />
               </TabPanel>
-              <TabPanel value={value} index={2}>
+              <TabPanel value={currentTab} index={2}>
                 <GenericTable
                   data={excecoesData}
                   Modal={ExcecoesModal}
                   filteredSearch={filteredSearch}
                 />
               </TabPanel>
-              <TabPanel value={value} index={3}>
+              <TabPanel value={currentTab} index={3}>
                 <ClassificationComponent
                   classifications={classifications}
                   removeClassification={removeClassification}
@@ -201,14 +207,18 @@ const Home = () => {
             justify='flex-end'
             style={{ marginTop: '.5rem' }}
           >
-            <Button
-              variant='contained'
-              disabled={classifications.length >= 26}
-              onClick={() => addClassificacao('Adicionar')}
-              className={classes.buttonsDown}
-            >
-              Adicionar
-            </Button>
+            {(currentTab === 0) | (currentTab === 3) ? (
+              <Button
+                variant='contained'
+                disabled={currentTab === 3 && classifications.length >= 26}
+                onClick={() => handleCreateButton()}
+                className={classes.buttonsDown}
+              >
+                {currentTab === 0
+                  ? 'Adicionar Aderido'
+                  : 'Adicionar Classificação'}
+              </Button>
+            ) : null}
             <Button
               variant='contained'
               onClick={() => alert('Exportar')}

@@ -6,12 +6,12 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
-      }
+        nome: 'Bairro',
+      },
     ],
     liberado: 'Modificado',
     frequencia_pesquisa: '2',
-    carencia_do_falso_foco: '5'
+    carencia_do_falso_foco: '5',
   },
   {
     codigo: '2',
@@ -20,7 +20,7 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'D',
@@ -29,7 +29,7 @@ const aderidosData = [
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '3',
-    carencia_do_falso_foco: '4'
+    carencia_do_falso_foco: '4',
   },
   {
     codigo: '3',
@@ -42,12 +42,12 @@ const aderidosData = [
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
       },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '4',
-    carencia_do_falso_foco: '1'
+    carencia_do_falso_foco: '1',
   },
   {
     codigo: '4',
@@ -56,20 +56,20 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'C',
-        nome: 'Quiosque'
+        nome: 'Quiosque',
       },
     ],
     liberado: 'Não',
     frequencia_pesquisa: '1',
-    carencia_do_falso_foco: '2'
+    carencia_do_falso_foco: '2',
   },
   {
     codigo: '5',
@@ -78,28 +78,28 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
-      }
+        nome: 'Centro',
+      },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '6',
-    carencia_do_falso_foco: '3'
+    carencia_do_falso_foco: '3',
   },
   {
     codigo: '1',
@@ -108,12 +108,12 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
-      }
+        nome: 'Bairro',
+      },
     ],
     liberado: 'Modificado',
     frequencia_pesquisa: '2',
-    carencia_do_falso_foco: '5'
+    carencia_do_falso_foco: '5',
   },
   {
     codigo: '2',
@@ -122,16 +122,16 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'L',
-        nome: 'Luxo'
+        nome: 'Luxo',
       },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '3',
-    carencia_do_falso_foco: '4'
+    carencia_do_falso_foco: '4',
   },
   {
     codigo: '3',
@@ -144,12 +144,12 @@ const aderidosData = [
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
       },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '4',
-    carencia_do_falso_foco: '1'
+    carencia_do_falso_foco: '1',
   },
   {
     codigo: '4',
@@ -158,20 +158,20 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'C',
-        nome: 'Quiosque'
+        nome: 'Quiosque',
       },
     ],
     liberado: 'Não',
     frequencia_pesquisa: '1',
-    carencia_do_falso_foco: '2'
+    carencia_do_falso_foco: '2',
   },
   {
     codigo: '5',
@@ -180,28 +180,28 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
-      }
+        nome: 'Centro',
+      },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '6',
-    carencia_do_falso_foco: '3'
+    carencia_do_falso_foco: '3',
   },
   {
     codigo: '1',
@@ -210,34 +210,34 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
-      }
+        nome: 'Bairro',
+      },
     ],
     liberado: 'Modificado',
     frequencia_pesquisa: '2',
-    carencia_do_falso_foco: '5'
+    carencia_do_falso_foco: '5',
   },
   {
     codigo: '2',
     nome: 'nome 2',
-    descricao: 'descrição 2',
+    descricao: 'Teste Paginação',
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'L',
-        nome: 'Luxo'
+        nome: 'Luxo',
       },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '3',
-    carencia_do_falso_foco: '4'
+    carencia_do_falso_foco: '4',
   },
   {
     codigo: '3',
-    nome: 'nome 3',
+    nome: 'Teste Paginação',
     descricao: 'descrição 3',
     classificacao: [
       {
@@ -246,12 +246,16 @@ const aderidosData = [
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
+      },
+      {
+        sigla: 'B',
+        nome: 'Centro',
       },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '4',
-    carencia_do_falso_foco: '1'
+    carencia_do_falso_foco: '1',
   },
   {
     codigo: '4',
@@ -260,20 +264,20 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'C',
-        nome: 'Quiosque'
+        nome: 'Quiosque',
       },
     ],
     liberado: 'Não',
     frequencia_pesquisa: '1',
-    carencia_do_falso_foco: '2'
+    carencia_do_falso_foco: '2',
   },
   {
     codigo: '5',
@@ -282,28 +286,28 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
-      }
+        nome: 'Centro',
+      },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '6',
-    carencia_do_falso_foco: '3'
+    carencia_do_falso_foco: '3',
   },
   {
     codigo: '1',
@@ -312,12 +316,12 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
-      }
+        nome: 'Bairro',
+      },
     ],
     liberado: 'Modificado',
     frequencia_pesquisa: '2',
-    carencia_do_falso_foco: '5'
+    carencia_do_falso_foco: '5',
   },
   {
     codigo: '2',
@@ -326,16 +330,16 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'L',
-        nome: 'Luxo'
+        nome: 'Luxo',
       },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '3',
-    carencia_do_falso_foco: '4'
+    carencia_do_falso_foco: '4',
   },
   {
     codigo: '3',
@@ -348,12 +352,12 @@ const aderidosData = [
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
       },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '4',
-    carencia_do_falso_foco: '1'
+    carencia_do_falso_foco: '1',
   },
   {
     codigo: '4',
@@ -362,20 +366,20 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'C',
-        nome: 'Quiosque'
+        nome: 'Quiosque',
       },
     ],
     liberado: 'Não',
     frequencia_pesquisa: '1',
-    carencia_do_falso_foco: '2'
+    carencia_do_falso_foco: '2',
   },
   {
     codigo: '5',
@@ -384,28 +388,28 @@ const aderidosData = [
     classificacao: [
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
+        nome: 'Centro',
       },
       {
         sigla: 'D',
-        nome: 'Shopping'
+        nome: 'Shopping',
       },
       {
         sigla: 'A',
-        nome: 'Bairro'
+        nome: 'Bairro',
       },
       {
         sigla: 'Z',
-        nome: 'Centro'
-      }
+        nome: 'Centro',
+      },
     ],
     liberado: 'Sim',
     frequencia_pesquisa: '6',
-    carencia_do_falso_foco: '3'
+    carencia_do_falso_foco: '3',
   },
 ];
 

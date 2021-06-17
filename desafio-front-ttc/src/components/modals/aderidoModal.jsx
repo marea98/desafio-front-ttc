@@ -26,10 +26,12 @@ const useStyles = makeStyles((theme) => ({
 const AderidoModal = ({ data }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [description, setDescription] = useState({
-    descricao: data.descricao,
-    classificacao: data.classificacao,
-    liberado: data.liberado,
+  const [adheredModel, setAdheredModel] = useState({
+    descricao: data?.descricao || '',
+    classificacao: data?.classificacao || '',
+    liberado: data?.liberado || '',
+    carencia_do_falso_foco: data?.carencia_do_falso_foco || '',
+    frequencia_pesquisa: data?.frequencia_pesquisa || '',
   });
 
   const handleClickOpen = () => {
@@ -37,10 +39,12 @@ const AderidoModal = ({ data }) => {
   };
 
   const handleClose = () => {
-    setDescription({
-      descricao: data.descricao,
-      classificacao: data.classificacao,
-      liberado: data.liberado,
+    setAdheredModel({
+      descricao: data?.descricao || '',
+      classificacao: data?.classificacao || '',
+      liberado: data?.liberado || '',
+      carencia_do_falso_foco: data?.carencia_do_falso_foco || '',
+      frequencia_pesquisa: data?.frequencia_pesquisa || '',
     });
     setOpen(false);
   };
@@ -82,33 +86,43 @@ const AderidoModal = ({ data }) => {
             <TextField
               variant='outlined'
               label='Descrição'
-              value={description.descricao}
+              value={adheredModel.descricao}
               onChange={(e, _) => {
-                setDescription({ ...description, descricao: e.target.value });
+                setAdheredModel({ ...adheredModel, descricao: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Liberado'
-              value={description.liberado}
+              value={adheredModel.liberado}
               onChange={(e, _) => {
-                setDescription({ ...description, liberado: e.target.value });
+                setAdheredModel({ ...adheredModel, liberado: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              disabled
               label='Carência falso foco'
-              value={data?.carencia_do_falso_foco || ''}
+              value={adheredModel.carencia_do_falso_foco || ''}
+              onChange={(e, _) => {
+                setAdheredModel({
+                  ...adheredModel,
+                  carencia_do_falso_foco: e.target.value,
+                });
+              }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              disabled
               label='Frequência pesquisa'
-              value={data?.frequencia_pesquisa || ''}
+              value={adheredModel.frequencia_pesquisa || ''}
+              onChange={(e, _) => {
+                setAdheredModel({
+                  ...adheredModel,
+                  frequencia_pesquisa: e.target.value,
+                });
+              }}
               className={classes.input}
             />
             <Grid container item justify='flex-end'>
