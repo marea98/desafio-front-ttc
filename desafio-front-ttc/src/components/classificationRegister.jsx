@@ -13,8 +13,8 @@ const ClassificationComponent = ({ classifications, removeClassification }) => {
         direction='column'
         style={{
           padding: '1rem 2.5rem .5rem 2.5rem',
-          minHeight: '23rem',
-          maxHeight: '23rem',
+          minHeight: '38rem',
+          maxHeight: '38rem',
           overflow: 'auto',
         }}
       >

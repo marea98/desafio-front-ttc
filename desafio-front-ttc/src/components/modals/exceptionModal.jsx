@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ClassificacaoSelect from '../selects/classificacaoSelect';
-import { Edit } from '@material-ui/icons';
+import { SuccessToast } from '../toasts/messageToast';
 import {
   Grid,
   Button,
@@ -8,56 +8,27 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  IconButton,
-  makeStyles,
   Typography,
 } from '@material-ui/core';
+import { useModalStyles } from './styles/modalStyles';
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    margin: '.5rem',
-    width: '30rem',
-  },
-  ButtonsAction: {
-    margin: '.5rem',
-  },
-}));
+const ExcecoesModal = ({ data, isOpen, close }) => {
+  const classes = useModalStyles();
 
-const AderidoModal = ({ data }) => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [description, setDescription] = useState({
-    descricao: data.descricao,
-    classificacao: data.classificacao,
-    liberado: data.liberado,
+  const [exception, setException] = useState({
+    code: data?.codigo || '',
+    adhered_code: data?.codigo_aderido || '',
+    unit_name: data?.nome_unidade || '',
+    prefix: data?.prefixo || '',
+    classification: data?.classificacao || '',
   });
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setDescription({
-      descricao: data.descricao,
-      classificacao: data.classificacao,
-      liberado: data.liberado,
-    });
-    setOpen(false);
-  };
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <Edit size='small' />
-      </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-      >
+      <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
-            Aderidos
+            Exceções
           </Typography>
         </DialogTitle>
         <DialogContent>
@@ -72,46 +43,53 @@ const AderidoModal = ({ data }) => {
               variant='outlined'
               disabled
               label='Código'
-              value={data?.codigo || ''}
-              className={classes.input}
-            />
-            <ClassificacaoSelect
-              classific={data?.classificacao || ''}
+              value={exception?.code}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              label='Descrição'
-              value={description.descricao}
+              disabled
+              label='Código aderido'
+              value={exception?.adhered_code}
+              className={classes.input}
+            />
+            <ClassificacaoSelect
+              classifications={exception?.classification}
+              className={classes.input}
+            />
+            <TextField
+              variant='outlined'
+              label='Nome unidade'
+              value={exception.unit_name}
               onChange={(e, _) => {
-                setDescription({ ...description, descricao: e.target.value });
+                setException({ ...exception, unit_name: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              label='Liberado'
-              value={description.liberado}
+              label='Prefixo'
+              value={exception.prefix}
               onChange={(e, _) => {
-                setDescription({ ...description, liberado: e.target.value });
+                setException({ ...exception, prefix: e.target.value });
               }}
               className={classes.input}
             />
             <Grid container item justify='flex-end'>
               <Button
                 variant='contained'
-                onClick={handleClose}
+                onClick={close}
                 className={classes.ButtonsAction}
               >
                 Voltar
               </Button>
               <Button
                 variant='contained'
-                onClick={() => {
-                  alert('Informações atualizadas');
-                  handleClose();
-                }}
                 style={{ backgroundColor: '#ffc629' }}
+                onClick={() => {
+                  SuccessToast('Atualizado com sucesso!');
+                  close();
+                }}
                 className={classes.ButtonsAction}
               >
                 Salvar
@@ -124,4 +102,4 @@ const AderidoModal = ({ data }) => {
   );
 };
 
-export default AderidoModal;
+export default ExcecoesModal;

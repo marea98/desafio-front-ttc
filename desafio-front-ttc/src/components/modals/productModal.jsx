@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Edit } from '@material-ui/icons';
-import ClassificacaoSelect from '../selects/classificacaoSelect';
+import { SuccessToast } from '../toasts/messageToast';
 import {
   Grid,
   Button,
@@ -8,56 +7,26 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  IconButton,
-  makeStyles,
   Typography,
 } from '@material-ui/core';
+import { useModalStyles } from './styles/modalStyles';
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    margin: '.5rem',
-    width: '30rem',
-  },
-  ButtonsAction: {
-    margin: '.5rem',
-  },
-}));
+const ProdutoModal = ({ data, isOpen, close }) => {
+  const classes = useModalStyles();
 
-const ExcecoesModal = ({ data }) => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [exception, setException] = useState({
-    nomeUnidade: data.nome_unidade,
-    prefixo: data.prefixo,
-    classificacao: data.classificacao,
+  const [product, setProduct] = useState({
+    code: data?.codigo || '',
+    adhered_code: data?.codigo_aderido || '',
+    name: data?.nome || '',
+    prefix: data?.prefixo || '',
   });
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setException({
-      nomeUnidade: data.nome_unidade,
-      prefixo: data.prefixo,
-      classificacao: data.classificacao,
-    });
-    setOpen(false);
-  };
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <Edit size='small' />
-      </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-      >
+      <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
-            Exceções
+            Produto
           </Typography>
         </DialogTitle>
         <DialogContent>
@@ -72,42 +41,38 @@ const ExcecoesModal = ({ data }) => {
               variant='outlined'
               disabled
               label='Código'
-              value={data?.codigo || ''}
+              value={product?.code}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               disabled
               label='Código aderido'
-              value={data?.codigo_aderido || ''}
-              className={classes.input}
-            />
-            <ClassificacaoSelect
-              classific={data?.classificacao || ''}
+              value={product?.adhered_code}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              label='Nome unidade'
-              value={exception.nomeUnidade}
+              label='Nome '
+              value={product.name}
               onChange={(e, _) => {
-                setException({ ...exception, nomeUnidade: e.target.value });
+                setProduct({ ...product, name: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Prefixo'
-              value={exception.prefixo}
+              value={product.prefix}
               onChange={(e, _) => {
-                setException({ ...exception, prefixo: e.target.value });
+                setProduct({ ...product, prefix: e.target.value });
               }}
               className={classes.input}
             />
             <Grid container item justify='flex-end'>
               <Button
                 variant='contained'
-                onClick={handleClose}
+                onClick={close}
                 className={classes.ButtonsAction}
               >
                 Voltar
@@ -116,8 +81,8 @@ const ExcecoesModal = ({ data }) => {
                 variant='contained'
                 style={{ backgroundColor: '#ffc629' }}
                 onClick={() => {
-                  alert('Informações atualizadas');
-                  handleClose();
+                  SuccessToast('Atualizado com sucesso!');
+                  close();
                 }}
                 className={classes.ButtonsAction}
               >
@@ -131,4 +96,4 @@ const ExcecoesModal = ({ data }) => {
   );
 };
 
-export default ExcecoesModal;
+export default ProdutoModal;
