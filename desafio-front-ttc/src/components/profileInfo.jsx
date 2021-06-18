@@ -8,29 +8,13 @@ import {
   Grid,
   Avatar,
   Typography,
-  makeStyles,
   MenuList,
 } from '@material-ui/core';
 import imageProfile from '../assets/images/ednaldo.jpg';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginRight: theme.spacing(1),
-  },
-  large: {
-    width: theme.spacing(5),
-    height: theme.spacing(5),
-  },
-  menuItem: {
-    width: theme.spacing(17),
-  },
-  menuList: {
-    opacity: '1',
-  },
-}));
+import { useProfileInfoStyles } from './styles/profileInfo';
 
 export default function MenuListComposition() {
-  const classes = useStyles();
+  const classes = useProfileInfoStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 

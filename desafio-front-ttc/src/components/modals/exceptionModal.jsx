@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ClassificacaoSelect from '../selects/classificacaoSelect';
 import { SuccessToast } from '../toasts/messageToast';
 import {
   Grid,
@@ -7,28 +8,19 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  makeStyles,
   Typography,
 } from '@material-ui/core';
+import { useModalStyles } from './styles/modalStyles';
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    margin: '.5rem',
-    width: '30rem',
-  },
-  ButtonsAction: {
-    margin: '.5rem',
-  },
-}));
+const ExcecoesModal = ({ data, isOpen, close }) => {
+  const classes = useModalStyles();
 
-const ProdutoModal = ({ data, isOpen, close }) => {
-  const classes = useStyles();
-
-  const [product, setProduct] = useState({
-    codigo: data?.codigo || '',
-    codigo_aderido: data?.codigo_aderido || '',
-    nome: data?.nome || '',
-    prefixo: data?.prefixo || '',
+  const [exception, setException] = useState({
+    code: data?.codigo || '',
+    adhered_code: data?.codigo_aderido || '',
+    unit_name: data?.nome_unidade || '',
+    prefix: data?.prefixo || '',
+    classification: data?.classificacao || '',
   });
 
   return (
@@ -36,7 +28,7 @@ const ProdutoModal = ({ data, isOpen, close }) => {
       <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
-            Produto
+            Exceções
           </Typography>
         </DialogTitle>
         <DialogContent>
@@ -51,31 +43,35 @@ const ProdutoModal = ({ data, isOpen, close }) => {
               variant='outlined'
               disabled
               label='Código'
-              value={product?.codigo}
+              value={exception?.code}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               disabled
               label='Código aderido'
-              value={product?.codigo_aderido}
+              value={exception?.adhered_code}
+              className={classes.input}
+            />
+            <ClassificacaoSelect
+              classifications={exception?.classification}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              label='Nome '
-              value={product.nome}
+              label='Nome unidade'
+              value={exception.unit_name}
               onChange={(e, _) => {
-                setProduct({ ...product, nome: e.target.value });
+                setException({ ...exception, unit_name: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Prefixo'
-              value={product.prefixo}
+              value={exception.prefix}
               onChange={(e, _) => {
-                setProduct({ ...product, prefixo: e.target.value });
+                setException({ ...exception, prefix: e.target.value });
               }}
               className={classes.input}
             />
@@ -106,4 +102,4 @@ const ProdutoModal = ({ data, isOpen, close }) => {
   );
 };
 
-export default ProdutoModal;
+export default ExcecoesModal;

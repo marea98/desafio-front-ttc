@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import GenericTable from '../components/genericTable';
-import ClassificationComponent from '../components/classificationRegister';
+import GenericTable from '../../components/genericTable';
+import ClassificationComponent from '../../components/classificationRegister';
 import SearchIcon from '@material-ui/icons/Search';
-import classificacoesData from '../data/classificacoes';
-import aderidosData from '../data/aderidos';
-import produtosData from '../data/produtos';
-import excecoesData from '../data/excecoes';
-import AderidoModal from '../components/modals/aderidoModal';
-import ProfileInfo from '../components/profileInfo';
+import classificacoesData from '../../data/classificacoes';
+import aderidosData from '../../data/aderidos';
+import produtosData from '../../data/produtos';
+import excecoesData from '../../data/excecoes';
+import AderidoModal from '../../components/modals/adheredModal';
+import ProfileInfo from '../../components/profileInfo';
 import { styled } from '@material-ui/core/styles';
-import ProdutoModal from '../components/modals/produtoModal';
-import alphabet from '../utils/alphabet';
-import ExcecoesModal from '../components/modals/excecoesModal';
-import { FailToast, SuccessToast } from '../components/toasts/messageToast';
+import ProdutoModal from '../../components/modals/productModal';
+import alphabet from '../../utils/alphabet';
+import ExcecoesModal from '../../components/modals/exceptionModal';
+import { FailToast, SuccessToast } from '../../components/toasts/messageToast';
 import {
   Box,
   Grid,
@@ -22,10 +22,11 @@ import {
   Tab,
   Typography,
   AppBar,
-  makeStyles,
   Button,
   InputAdornment,
 } from '@material-ui/core';
+import { useHomeStyles } from './styles/styles';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -63,30 +64,8 @@ const Input = styled('input')({
   display: 'none',
 });
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-  buttonsDown: {
-    margin: '.5rem',
-    backgroundColor: '#ffc629',
-  },
-  header: {
-    backgroundColor: '#ffc629',
-    padding: '0.8rem',
-    textAlign: 'start',
-    justifyContent: 'space-between',
-    display: 'flex',
-  },
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
-}));
-
 const Home = () => {
-  const classes = useStyles();
+  const classes = useHomeStyles();
   const [currentTab, setCurrentTab] = useState(0);
   const [selectedFile, setSelectedFile] = useState();
   const [open, setOpen] = useState(false);

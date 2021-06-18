@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   withStyles,
-  makeStyles,
   Paper,
   TableRow,
   TableHead,
@@ -21,7 +20,12 @@ import {
   LastPage,
   Edit,
 } from '@material-ui/icons';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import {
+  useTooltipTheme,
+  useTableStyles,
+  usePaginationStyles,
+} from './styles/tableStyles';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -33,29 +37,6 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const theme = createMuiTheme({
-  overrides: {
-    MuiTooltip: {
-      tooltip: {
-        fontSize: '1em',
-      },
-    },
-  },
-});
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-});
-
-const useStyles1 = makeStyles((theme) => ({
-  root: {
-    flexShrink: 0,
-    marginLeft: theme.spacing(2.5),
-  },
-}));
-
 // eslint-disable-next-line no-extend-native
 String.prototype.Capitalize = function () {
   const replaceUnderlineToSpace = this.replaceAll('_', ' ');
@@ -66,7 +47,7 @@ String.prototype.Capitalize = function () {
 };
 
 const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
-  const classes = useStyles();
+  const tableClasses = useTableStyles();
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -89,7 +70,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
   };
 
   function TablePaginationActions(props) {
-    const classes = useStyles1();
+    const classesPagination = usePaginationStyles();
     const theme = useTheme();
     const { count, page, rowsPerPage, onChangePage } = props;
 
@@ -110,7 +91,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
     };
 
     return (
-      <div className={classes.root}>
+      <div className={classesPagination.root}>
         <IconButton
           onClick={handleFirstPageButtonClick}
           disabled={page === 0}
@@ -169,7 +150,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
         style={{ borderRadius: '0', height: '35em' }}
       >
         <Table
-          className={classes.table}
+          className={tableClasses.table}
           aria-label='customized table'
           stickyHeader
         >
@@ -192,7 +173,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
                   <TableRow key={i}>
                     {propNames.map((prop, i) => {
                       return prop === 'classificacao' ? (
-                        <MuiThemeProvider key={i} theme={theme}>
+                        <MuiThemeProvider key={i} theme={useTooltipTheme}>
                           <Tooltip
                             key={i}
                             arrow

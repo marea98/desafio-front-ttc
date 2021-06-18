@@ -105,7 +105,7 @@ const aderidosData = [
     ativo: 'Sim',
     frequencia_pesquisa: '6',
     carencia_do_falso_foco: '3',
-  }
+  },
 ];
 
 export default aderidosData;

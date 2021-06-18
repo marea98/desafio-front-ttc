@@ -9,38 +9,28 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  makeStyles,
   Typography,
   MenuItem,
   FormControl,
   InputLabel,
   Select,
 } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  input: {
-    margin: '.5rem',
-    width: '30rem',
-  },
-  ButtonsAction: {
-    margin: '.5rem',
-  },
-}));
+import { useModalStyles } from './styles/modalStyles';
 
 const AderidoModal = ({ data, isCreate, isOpen, close }) => {
-  const classes = useStyles();
+  const classes = useModalStyles();
 
   console.log();
 
   const [adhered, setAdhered] = useState({
-    codigo: data?.codigo || '',
-    prefixo: data?.prefixo || '',
-    descricao: data?.descricao || '',
-    classificacao: data?.classificacao || [],
-    ativo: data?.ativo || '',
-    carencia_do_falso_foco: data?.carencia_do_falso_foco || '',
-    frequencia_pesquisa: data?.frequencia_pesquisa || '',
-    vigencia_inicial: moment(data?.vigencia_inicial, 'DD/MM/YYYY').format(
+    code: data?.codigo || '',
+    prefix: data?.prefixo || '',
+    description: data?.descricao || '',
+    classification: data?.classificacao || [],
+    isEnabled: data?.ativo || '',
+    lack_of_fake_focus: data?.carencia_do_falso_foco || '',
+    search_frequency: data?.frequencia_pesquisa || '',
+    initial_term: moment(data?.vigencia_inicial, 'DD/MM/YYYY').format(
       'yyyy-MM-DD'
     ),
   });
@@ -48,12 +38,15 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
   const handleClose = () => {
     setAdhered({
       codigo: '',
-      prefixo: '',
-      descricao: '',
-      classificacao: [],
-      ativo: '',
-      carencia_do_falso_foco: '',
-      frequencia_pesquisa: '',
+      prefix: '',
+      description: '',
+      classification: [],
+      isEnabled: '',
+      lack_of_fake_focus: '',
+      search_frequency: '',
+      initial_term: moment(data?.vigencia_inicial, 'DD/MM/YYYY').format(
+        'yyyy-MM-DD'
+      ),
     });
 
     close();
@@ -84,30 +77,30 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
                 variant='outlined'
                 disabled
                 label='Código'
-                value={adhered.codigo}
+                value={adhered.code}
                 className={classes.input}
               />
             )}
 
             <ClassificacaoSelect
-              classifications={adhered.classificacao}
+              classifications={adhered.classification}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Prefixo'
-              value={adhered.prefixo}
+              value={adhered.prefix}
               onChange={(e, _) => {
-                setAdhered({ ...adhered, prefixo: e.target.value });
+                setAdhered({ ...adhered, prefix: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Descrição'
-              value={adhered.descricao}
+              value={adhered.description}
               onChange={(e, _) => {
-                setAdhered({ ...adhered, descricao: e.target.value });
+                setAdhered({ ...adhered, description: e.target.value });
               }}
               className={classes.input}
             />
@@ -119,10 +112,10 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               defaultValue={
                 isCreate
                   ? moment().format('YYYY-MM-DD').toString()
-                  : adhered.vigencia_inicial
+                  : adhered.initial_term
               }
               onChange={(e, _) => {
-                setAdhered({ ...adhered, vigencia_inicial: e.target.value });
+                setAdhered({ ...adhered, initial_term: e.target.value });
               }}
               InputLabelProps={{
                 shrink: true,
@@ -133,22 +126,22 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               variant='outlined'
               label='Carência falso foco'
               className={classes.input}
-              value={adhered.carencia_do_falso_foco}
+              value={adhered.lack_of_fake_focus}
               onChange={(e, _) => {
                 setAdhered({
                   ...adhered,
-                  carencia_do_falso_foco: e.target.value,
+                  lack_of_fake_focus: e.target.value,
                 });
               }}
             />
             <TextField
               variant='outlined'
               label='Frequência pesquisa'
-              value={adhered.frequencia_pesquisa}
+              value={adhered.search_frequency}
               onChange={(e, _) => {
                 setAdhered({
                   ...adhered,
-                  frequencia_pesquisa: e.target.value,
+                  search_frequency: e.target.value,
                 });
               }}
               className={classes.input}
@@ -160,9 +153,9 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               <Select
                 label='Ativo'
                 id='demo-simple-select-outlined'
-                value={adhered.ativo}
+                value={adhered.isEnabled}
                 onChange={(e, _) => {
-                  setAdhered({ ...adhered, ativo: e.target.value });
+                  setAdhered({ ...adhered, isEnabled: e.target.value });
                 }}
               >
                 <MenuItem value={'Sim'}>Sim</MenuItem>
