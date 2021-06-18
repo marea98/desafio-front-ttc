@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import GenericTable from '../components/tableComponent';
-import ClassificationComponent from '../components/classificationComponent';
+import GenericTable from '../components/genericTable';
+import ClassificationComponent from '../components/classificationRegister';
 import SearchIcon from '@material-ui/icons/Search';
 import classificacoesData from '../data/classificacoes';
 import aderidosData from '../data/aderidos';
@@ -13,7 +13,7 @@ import { styled } from '@material-ui/core/styles';
 import ProdutoModal from '../components/modals/produtoModal';
 import alphabet from '../utils/alphabet';
 import ExcecoesModal from '../components/modals/excecoesModal';
-import { FailToast, SuccessToast } from '../components/toasts/successfullToast';
+import { FailToast, SuccessToast } from '../components/toasts/messageToast';
 import {
   Box,
   Grid,
@@ -143,7 +143,7 @@ const Home = () => {
   }, [selectedFile]);
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} className={classes.header}>
         <Typography component='span' variant='h4'>
           Configuração TTC aderidos
@@ -280,7 +280,7 @@ const Home = () => {
         </Grid>
       </Grid>
       <AderidoModal isCreate isOpen={open} close={() => setOpen(false)} />
-    </>
+    </React.Fragment>
   );
 };
 

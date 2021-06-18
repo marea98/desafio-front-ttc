@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SuccessToast } from '../toasts/successfullToast';
+import { SuccessToast } from '../toasts/messageToast';
 import {
   Grid,
   Button,

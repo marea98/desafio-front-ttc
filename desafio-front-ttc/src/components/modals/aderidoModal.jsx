@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ClassificacaoSelect from '../selects/classificacaoSelect';
-import { SuccessToast } from '../toasts/successfullToast';
+import { SuccessToast } from '../toasts/messageToast';
+import moment from 'moment';
 import {
   Grid,
   Button,
@@ -10,6 +11,10 @@ import {
   DialogTitle,
   makeStyles,
   Typography,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,19 +30,42 @@ const useStyles = makeStyles((theme) => ({
 const AderidoModal = ({ data, isCreate, isOpen, close }) => {
   const classes = useStyles();
 
+  console.log();
+
   const [adhered, setAdhered] = useState({
     codigo: data?.codigo || '',
-    nome: data?.nome || '',
+    prefixo: data?.prefixo || '',
     descricao: data?.descricao || '',
     classificacao: data?.classificacao || [],
-    liberado: data?.liberado || '',
+    ativo: data?.ativo || '',
     carencia_do_falso_foco: data?.carencia_do_falso_foco || '',
     frequencia_pesquisa: data?.frequencia_pesquisa || '',
+    vigencia_inicial: moment(data?.vigencia_inicial, 'DD/MM/YYYY').format(
+      'yyyy-MM-DD'
+    ),
   });
+
+  const handleClose = () => {
+    setAdhered({
+      codigo: '',
+      prefixo: '',
+      descricao: '',
+      classificacao: [],
+      ativo: '',
+      carencia_do_falso_foco: '',
+      frequencia_pesquisa: '',
+    });
+
+    close();
+  };
 
   return (
     <div>
-      <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
+      <Dialog
+        open={isOpen}
+        onClose={handleClose}
+        aria-labelledby='form-dialog-title'
+      >
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
             Aderidos
@@ -67,10 +95,10 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
             />
             <TextField
               variant='outlined'
-              label='Nome'
-              value={adhered.nome}
+              label='Prefixo'
+              value={adhered.prefixo}
               onChange={(e, _) => {
-                setAdhered({ ...adhered, nome: e.target.value });
+                setAdhered({ ...adhered, prefixo: e.target.value });
               }}
               className={classes.input}
             />
@@ -85,16 +113,26 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
             />
             <TextField
               variant='outlined'
-              label='Liberado'
-              value={adhered.liberado}
+              label='Vingência inicial'
+              type='date'
+              disabled
+              defaultValue={
+                isCreate
+                  ? moment().format('YYYY-MM-DD').toString()
+                  : adhered.vigencia_inicial
+              }
               onChange={(e, _) => {
-                setAdhered({ ...adhered, liberado: e.target.value });
+                setAdhered({ ...adhered, vigencia_inicial: e.target.value });
+              }}
+              InputLabelProps={{
+                shrink: true,
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Carência falso foco'
+              className={classes.input}
               value={adhered.carencia_do_falso_foco}
               onChange={(e, _) => {
                 setAdhered({
@@ -102,7 +140,6 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
                   carencia_do_falso_foco: e.target.value,
                 });
               }}
-              className={classes.input}
             />
             <TextField
               variant='outlined'
@@ -116,10 +153,26 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               }}
               className={classes.input}
             />
+            <FormControl variant='outlined' className={classes.input}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Ativo
+              </InputLabel>
+              <Select
+                label='Ativo'
+                id='demo-simple-select-outlined'
+                value={adhered.ativo}
+                onChange={(e, _) => {
+                  setAdhered({ ...adhered, ativo: e.target.value });
+                }}
+              >
+                <MenuItem value={'Sim'}>Sim</MenuItem>
+                <MenuItem value={'Não'}>Não</MenuItem>
+              </Select>
+            </FormControl>
             <Grid container item justify='flex-end'>
               <Button
                 variant='contained'
-                onClick={close}
+                onClick={() => handleClose()}
                 className={classes.ButtonsAction}
               >
                 Voltar
@@ -130,7 +183,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
                   SuccessToast(
                     isCreate ? 'Criado com sucesso!' : 'Atualizado com sucesso!'
                   );
-                  close();
+                  handleClose();
                 }}
                 style={{ backgroundColor: '#ffc629' }}
                 className={classes.ButtonsAction}

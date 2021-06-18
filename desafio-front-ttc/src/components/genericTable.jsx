@@ -21,6 +21,7 @@ import {
   LastPage,
   Edit,
 } from '@material-ui/icons';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -31,6 +32,16 @@ const StyledTableCell = withStyles((theme) => ({
     fontSize: 14,
   },
 }))(TableCell);
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        fontSize: '1em',
+      },
+    },
+  },
+});
 
 const useStyles = makeStyles({
   table: {
@@ -68,7 +79,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
     setOpen(true);
   };
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_, newPage) => {
     setPage(newPage);
   };
 
@@ -152,7 +163,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
           return x.codigo === filteredSearch;
         });
   return (
-    <>
+    <React.Fragment>
       <TableContainer
         component={Paper}
         style={{ borderRadius: '0', height: '35em' }}
@@ -181,28 +192,31 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
                   <TableRow key={i}>
                     {propNames.map((prop, i) => {
                       return prop === 'classificacao' ? (
-                        <Tooltip
-                          title={row[prop].map(
-                            (classification, index) =>
-                              `${classification.nome}${
-                                index === row[prop].length - 1 ? '' : ','
-                              } 
-                          `
-                          )}
-                          arrow
-                        >
-                          <StyledTableCell
-                            key={prop}
-                            align={i === 0 ? 'left' : 'center'}
-                          >
-                            {row[prop].map(
+                        <MuiThemeProvider key={i} theme={theme}>
+                          <Tooltip
+                            key={i}
+                            arrow
+                            title={row[prop].map(
                               (classification, index) =>
-                                `${classification.sigla}${
+                                `${classification.nome}${
                                   index === row[prop].length - 1 ? '' : ','
-                                }`
+                                } 
+                          `
                             )}
-                          </StyledTableCell>
-                        </Tooltip>
+                          >
+                            <StyledTableCell
+                              key={prop}
+                              align={i === 0 ? 'left' : 'center'}
+                            >
+                              {row[prop].map(
+                                (classification, index) =>
+                                  `${classification.sigla}${
+                                    index === row[prop].length - 1 ? '' : ','
+                                  }`
+                              )}
+                            </StyledTableCell>
+                          </Tooltip>
+                        </MuiThemeProvider>
                       ) : (
                         <StyledTableCell
                           key={prop}
@@ -238,7 +252,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
       {open && (
         <Modal data={model} isOpen={open} close={() => setOpen(false)} />
       )}
-    </>
+    </React.Fragment>
   );
 };
 

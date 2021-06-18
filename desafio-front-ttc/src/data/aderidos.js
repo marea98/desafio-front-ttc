@@ -1,22 +1,24 @@
 const aderidosData = [
   {
     codigo: '1',
-    nome: 'nome 1',
+    prefixo: 'nome 1',
     descricao: 'descrição 1',
+    vigencia_inicial: '12/12/2012',
     classificacao: [
       {
         sigla: 'A',
         nome: 'Bairro',
       },
     ],
-    liberado: 'Modificado',
+    ativo: 'Não',
     frequencia_pesquisa: '2',
     carencia_do_falso_foco: '5',
   },
   {
     codigo: '2',
-    nome: 'nome 2',
+    prefixo: 'nome 2',
     descricao: 'descrição 2',
+    vigencia_inicial: '21/02/2003',
     classificacao: [
       {
         sigla: 'A',
@@ -27,14 +29,15 @@ const aderidosData = [
         nome: 'Centro',
       },
     ],
-    liberado: 'Sim',
+    ativo: 'Sim',
     frequencia_pesquisa: '3',
     carencia_do_falso_foco: '4',
   },
   {
     codigo: '3',
-    nome: 'nome 3',
+    prefixo: 'nome 3',
     descricao: 'descrição 3',
+    vigencia_inicial: '11/04/2003',
     classificacao: [
       {
         sigla: 'C',
@@ -45,14 +48,15 @@ const aderidosData = [
         nome: 'Centro',
       },
     ],
-    liberado: 'Sim',
+    ativo: 'Sim',
     frequencia_pesquisa: '4',
     carencia_do_falso_foco: '1',
   },
   {
     codigo: '4',
-    nome: 'nome 4',
+    prefixo: 'nome 4',
     descricao: 'descrição 4',
+    vigencia_inicial: '26/09/1997',
     classificacao: [
       {
         sigla: 'A',
@@ -67,14 +71,15 @@ const aderidosData = [
         nome: 'Quiosque',
       },
     ],
-    liberado: 'Não',
+    ativo: 'Não',
     frequencia_pesquisa: '1',
     carencia_do_falso_foco: '2',
   },
   {
     codigo: '5',
-    nome: 'nome 5',
+    prefixo: 'nome 5',
     descricao: 'descrição 5',
+    vigencia_inicial: '11/09/2001',
     classificacao: [
       {
         sigla: 'A',
@@ -97,320 +102,10 @@ const aderidosData = [
         nome: 'Centro',
       },
     ],
-    liberado: 'Sim',
+    ativo: 'Sim',
     frequencia_pesquisa: '6',
     carencia_do_falso_foco: '3',
-  },
-  {
-    codigo: '1',
-    nome: 'nome 1',
-    descricao: 'descrição 1',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-    ],
-    liberado: 'Modificado',
-    frequencia_pesquisa: '2',
-    carencia_do_falso_foco: '5',
-  },
-  {
-    codigo: '2',
-    nome: 'nome 2',
-    descricao: 'descrição 2',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'L',
-        nome: 'Luxo',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '3',
-    carencia_do_falso_foco: '4',
-  },
-  {
-    codigo: '3',
-    nome: 'nome 3',
-    descricao: 'descrição 3',
-    classificacao: [
-      {
-        sigla: 'C',
-        nome: 'Vip',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '4',
-    carencia_do_falso_foco: '1',
-  },
-  {
-    codigo: '4',
-    nome: 'nome 4',
-    descricao: 'descrição 4',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'D',
-        nome: 'Shopping',
-      },
-      {
-        sigla: 'C',
-        nome: 'Quiosque',
-      },
-    ],
-    liberado: 'Não',
-    frequencia_pesquisa: '1',
-    carencia_do_falso_foco: '2',
-  },
-  {
-    codigo: '5',
-    nome: 'nome 5',
-    descricao: 'descrição 5',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-      {
-        sigla: 'D',
-        nome: 'Shopping',
-      },
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '6',
-    carencia_do_falso_foco: '3',
-  },
-  {
-    codigo: '1',
-    nome: 'nome 1',
-    descricao: 'descrição 1',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-    ],
-    liberado: 'Modificado',
-    frequencia_pesquisa: '2',
-    carencia_do_falso_foco: '5',
-  },
-  {
-    codigo: '2',
-    nome: 'nome 2',
-    descricao: 'Teste Paginação',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'L',
-        nome: 'Luxo',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '3',
-    carencia_do_falso_foco: '4',
-  },
-  {
-    codigo: '3',
-    nome: 'Teste Paginação',
-    descricao: 'descrição 3',
-    classificacao: [
-      {
-        sigla: 'C',
-        nome: 'Vip',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-      {
-        sigla: 'B',
-        nome: 'Centro',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '4',
-    carencia_do_falso_foco: '1',
-  },
-  {
-    codigo: '4',
-    nome: 'nome 4',
-    descricao: 'descrição 4',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'D',
-        nome: 'Shopping',
-      },
-      {
-        sigla: 'C',
-        nome: 'Quiosque',
-      },
-    ],
-    liberado: 'Não',
-    frequencia_pesquisa: '1',
-    carencia_do_falso_foco: '2',
-  },
-  {
-    codigo: '5',
-    nome: 'nome 5',
-    descricao: 'descrição 5',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-      {
-        sigla: 'D',
-        nome: 'Shopping',
-      },
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '6',
-    carencia_do_falso_foco: '3',
-  },
-  {
-    codigo: '1',
-    nome: 'nome 1',
-    descricao: 'descrição 1',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-    ],
-    liberado: 'Modificado',
-    frequencia_pesquisa: '2',
-    carencia_do_falso_foco: '5',
-  },
-  {
-    codigo: '2',
-    nome: 'nome 2',
-    descricao: 'descrição 2',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'L',
-        nome: 'Luxo',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '3',
-    carencia_do_falso_foco: '4',
-  },
-  {
-    codigo: '3',
-    nome: 'nome 3',
-    descricao: 'descrição 3',
-    classificacao: [
-      {
-        sigla: 'C',
-        nome: 'Vip',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '4',
-    carencia_do_falso_foco: '1',
-  },
-  {
-    codigo: '4',
-    nome: 'nome 4',
-    descricao: 'descrição 4',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'D',
-        nome: 'Shopping',
-      },
-      {
-        sigla: 'C',
-        nome: 'Quiosque',
-      },
-    ],
-    liberado: 'Não',
-    frequencia_pesquisa: '1',
-    carencia_do_falso_foco: '2',
-  },
-  {
-    codigo: '5',
-    nome: 'nome 5',
-    descricao: 'descrição 5',
-    classificacao: [
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-      {
-        sigla: 'D',
-        nome: 'Shopping',
-      },
-      {
-        sigla: 'A',
-        nome: 'Bairro',
-      },
-      {
-        sigla: 'Z',
-        nome: 'Centro',
-      },
-    ],
-    liberado: 'Sim',
-    frequencia_pesquisa: '6',
-    carencia_do_falso_foco: '3',
-  },
+  }
 ];
 
 export default aderidosData;

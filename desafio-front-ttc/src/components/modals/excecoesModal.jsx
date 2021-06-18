@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ClassificacaoSelect from '../selects/classificacaoSelect';
-import { SuccessToast } from '../toasts/successfullToast';
+import { SuccessToast } from '../toasts/messageToast';
 import {
   Grid,
   Button,

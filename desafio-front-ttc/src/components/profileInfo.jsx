@@ -63,7 +63,7 @@ export default function MenuListComposition() {
   }, [open]);
 
   return (
-    <>
+    <React.Fragment>
       <Grid
         container
         ref={anchorRef}
@@ -133,6 +133,6 @@ export default function MenuListComposition() {
           </Grow>
         )}
       </Popper>
-    </>
+    </React.Fragment>
   );
 }
