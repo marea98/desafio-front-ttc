@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ClassificacaoSelect from '../selects/classificacaoSelect';
+import ClassificationSelect from '../selects/classificationSelect';
 import { SuccessToast } from '../toasts/messageToast';
 import moment from 'moment';
 import {
@@ -16,12 +16,18 @@ import {
   Select,
 } from '@material-ui/core';
 import { useModalStyles } from './styles/modalStyles';
+import { IAdhered } from '../../data/interfaces/IAdhered';
 
-const AderidoModal = ({ data, isCreate, isOpen, close }) => {
+interface IAdheredModal {
+  data?: IAdhered,
+  isCreate: boolean,
+  isOpen: boolean,
+  close(): void 
+}
+
+const AdheredModal : React.FunctionComponent<IAdheredModal> = ({ data, isCreate, isOpen, close }) => {
+
   const classes = useModalStyles();
-
-  console.log();
-
   const [adhered, setAdhered] = useState({
     code: data?.codigo || '',
     prefix: data?.prefixo || '',
@@ -37,7 +43,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
 
   const handleClose = () => {
     setAdhered({
-      codigo: '',
+      code: '',
       prefix: '',
       description: '',
       classification: [],
@@ -82,7 +88,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               />
             )}
 
-            <ClassificacaoSelect
+            <ClassificationSelect
               classifications={adhered.classification}
               className={classes.input}
             />
@@ -90,7 +96,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               variant='outlined'
               label='Prefixo'
               value={adhered.prefix}
-              onChange={(e, _) => {
+              onChange={(e : React.ChangeEvent<HTMLInputElement>) => {
                 setAdhered({ ...adhered, prefix: e.target.value });
               }}
               className={classes.input}
@@ -99,7 +105,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               variant='outlined'
               label='Descrição'
               value={adhered.description}
-              onChange={(e, _) => {
+              onChange={(e : React.ChangeEvent<HTMLInputElement>) => {
                 setAdhered({ ...adhered, description: e.target.value });
               }}
               className={classes.input}
@@ -114,7 +120,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
                   ? moment().format('YYYY-MM-DD').toString()
                   : adhered.initial_term
               }
-              onChange={(e, _) => {
+              onChange={(e : React.ChangeEvent<HTMLInputElement>) => {
                 setAdhered({ ...adhered, initial_term: e.target.value });
               }}
               InputLabelProps={{
@@ -127,7 +133,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               label='Carência falso foco'
               className={classes.input}
               value={adhered.lack_of_fake_focus}
-              onChange={(e, _) => {
+              onChange={(e : React.ChangeEvent<HTMLInputElement>) => {
                 setAdhered({
                   ...adhered,
                   lack_of_fake_focus: e.target.value,
@@ -138,7 +144,7 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
               variant='outlined'
               label='Frequência pesquisa'
               value={adhered.search_frequency}
-              onChange={(e, _) => {
+              onChange={(e : React.ChangeEvent<HTMLInputElement>) => {
                 setAdhered({
                   ...adhered,
                   search_frequency: e.target.value,
@@ -154,8 +160,8 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
                 label='Ativo'
                 id='demo-simple-select-outlined'
                 value={adhered.isEnabled}
-                onChange={(e, _) => {
-                  setAdhered({ ...adhered, isEnabled: e.target.value });
+                onChange={(event : any) => {
+                  setAdhered({ ...adhered, isEnabled: event.target.value});
                 }}
               >
                 <MenuItem value={'Sim'}>Sim</MenuItem>
@@ -191,4 +197,4 @@ const AderidoModal = ({ data, isCreate, isOpen, close }) => {
   );
 };
 
-export default AderidoModal;
+export default AdheredModal;

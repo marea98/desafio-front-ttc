@@ -1,4 +1,6 @@
-const aderidosData = [
+import { IAdhered } from "./interfaces/IAdhered";
+
+const aderidosData: IAdhered[] = [
   {
     codigo: '1',
     prefixo: 'nome 1',

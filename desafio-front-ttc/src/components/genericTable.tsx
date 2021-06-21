@@ -26,6 +26,7 @@ import {
   useTableStyles,
   usePaginationStyles,
 } from './styles/tableStyles';
+import {IClassification} from '../data/interfaces/IClassification';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -38,55 +39,69 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 // eslint-disable-next-line no-extend-native
-String.prototype.Capitalize = function () {
-  const replaceUnderlineToSpace = this.replaceAll('_', ' ');
+const Capitalize = (header: any) : string => {
+  const replaceUnderlineToSpace = header.replaceAll('_', ' ');
   return (
     replaceUnderlineToSpace.charAt(0).toUpperCase() +
     replaceUnderlineToSpace.slice(1)
   );
 };
 
-const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
+interface TablePaginationActionsProps {
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  onChangePage: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+}
+
+interface IGenericTable {
+  data: any[],
+  Modal: React.ElementType,
+  filteredSearch: string,
+  isAdhered?: boolean
+}
+
+const GenericTable : React.FC<IGenericTable> = ({ data, Modal, filteredSearch, isAdhered }) => {
   const tableClasses = useTableStyles();
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const [open, setOpen] = useState(false);
-  const [model, setModel] = useState();
+  const [model, setModel] = useState<any>();
 
-  const handleOpenModal = (data) => {
+  const handleOpenModal = (data: any) => {
     setModel(data);
     setOpen(true);
   };
 
-  const handleChangePage = (_, newPage) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  function TablePaginationActions(props) {
+  function TablePaginationActions(props: TablePaginationActionsProps) {
     const classesPagination = usePaginationStyles();
     const theme = useTheme();
     const { count, page, rowsPerPage, onChangePage } = props;
 
-    const handleFirstPageButtonClick = (event) => {
+    const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       onChangePage(event, 0);
     };
-
-    const handleBackButtonClick = (event) => {
+  
+    const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       onChangePage(event, page - 1);
     };
-
-    const handleNextButtonClick = (event) => {
+  
+    const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       onChangePage(event, page + 1);
     };
-
-    const handleLastPageButtonClick = (event) => {
+  
+    const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
     };
 
@@ -139,8 +154,8 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
   const filteredData = () =>
     filteredSearch === ''
       ? data
-      : data.filter((x) => {
-          if (!isAderido) return x.codigo_aderido === filteredSearch;
+      : data.filter((x: any) => {
+          if (!isAdhered) return x.codigo_aderido === filteredSearch;
           return x.codigo === filteredSearch;
         });
   return (
@@ -158,7 +173,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
             <TableRow>
               {Object.keys(data[0]).map((column, i) => (
                 <StyledTableCell key={i} align={i === 0 ? 'left' : 'center'}>
-                  {column.Capitalize()}
+                  {Capitalize(column)}
                 </StyledTableCell>
               ))}
               <StyledTableCell align='right'>Editar</StyledTableCell>
@@ -178,7 +193,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
                             key={i}
                             arrow
                             title={row[prop].map(
-                              (classification, index) =>
+                              (classification: IClassification, index: number) =>
                                 `${classification.nome}${
                                   index === row[prop].length - 1 ? '' : ','
                                 } 
@@ -190,7 +205,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
                               align={i === 0 ? 'left' : 'center'}
                             >
                               {row[prop].map(
-                                (classification, index) =>
+                                (classification : IClassification, index: number) =>
                                   `${classification.sigla}${
                                     index === row[prop].length - 1 ? '' : ','
                                   }`
@@ -210,7 +225,7 @@ const GenericTable = ({ data, Modal, filteredSearch, isAderido }) => {
 
                     <StyledTableCell align='right' style={{ padding: '0px' }}>
                       <IconButton onClick={() => handleOpenModal(row)}>
-                        <Edit size='small' />
+                        <Edit fontSize='small'/>
                       </IconButton>
                     </StyledTableCell>
                   </TableRow>

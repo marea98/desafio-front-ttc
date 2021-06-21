@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const useModalStyles = makeStyles((theme) => ({
+const useModalStyles = makeStyles(() => ({
   input: {
     margin: '.5rem',
     width: '30rem',

@@ -12,13 +12,13 @@ const Toast = Swal.mixin({
   },
 });
 
-const SuccessToast = (message) =>
+const SuccessToast = (message: string) =>
   Toast.fire({
     icon: 'success',
     title: message,
   });
 
-const FailToast = (message) =>
+const FailToast = (message: string) =>
   Toast.fire({
     icon: 'error',
     title: message,

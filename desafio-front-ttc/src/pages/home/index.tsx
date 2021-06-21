@@ -7,7 +7,7 @@ import classificacoesData from '../../data/classificacoes';
 import aderidosData from '../../data/aderidos';
 import produtosData from '../../data/produtos';
 import excecoesData from '../../data/excecoes';
-import AderidoModal from '../../components/modals/adheredModal';
+import AdheredModal from '../../components/modals/adheredModal';
 import ProfileInfo from '../../components/profileInfo';
 import { styled } from '@material-ui/core/styles';
 import ProdutoModal from '../../components/modals/productModal';
@@ -27,7 +27,13 @@ import {
 } from '@material-ui/core';
 import { useHomeStyles } from './styles/styles';
 
-function TabPanel(props) {
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -53,7 +59,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
+function a11yProps(index: any) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
@@ -67,11 +73,11 @@ const Input = styled('input')({
 const Home = () => {
   const classes = useHomeStyles();
   const [currentTab, setCurrentTab] = useState(0);
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState<File>();
   const [open, setOpen] = useState(false);
   const [classifications, setclassifications] = useState(classificacoesData);
 
-  const removeClassification = (index) => {
+  const removeClassification = (index: number) => {
     let removedClassifications = classifications.filter((x, i) => i !== index);
     setclassifications(removedClassifications);
   };
@@ -87,7 +93,7 @@ const Home = () => {
 
   const [filteredSearch, setFilteredSearch] = useState('');
 
-  const handleChange = (_, newValue) => {
+  const handleChange = (_: any, newValue: number) => {
     setCurrentTab(newValue);
   };
 
@@ -99,7 +105,7 @@ const Home = () => {
     return addClassificacao();
   };
 
-  const onSelectFile = (e) => {
+  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
 
     setSelectedFile(e.target.files[0]);
@@ -180,9 +186,9 @@ const Home = () => {
               <TabPanel value={currentTab} index={0}>
                 <GenericTable
                   data={aderidosData}
-                  Modal={AderidoModal}
+                  Modal={AdheredModal}
                   filteredSearch={filteredSearch}
-                  isAderido
+                  isAdhered
                 />
               </TabPanel>
               <TabPanel value={currentTab} index={1}>
@@ -213,7 +219,7 @@ const Home = () => {
             justify='flex-end'
             style={{ marginTop: '.5rem' }}
           >
-            {(currentTab === 0) | (currentTab === 3) ? (
+            {(currentTab === 0) || (currentTab === 3) ? (
               <Button
                 variant='contained'
                 disabled={currentTab === 3 && classifications.length >= 26}
@@ -227,7 +233,7 @@ const Home = () => {
             ) : null}
             <Button
               variant='contained'
-              onClick={() => alert('Exportar')}
+              onClick={() => SuccessToast('Exportado com sucesso! :)')}
               className={classes.buttonsDown}
             >
               Exportar
@@ -258,7 +264,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </Grid>
-      <AderidoModal isCreate isOpen={open} close={() => setOpen(false)} />
+      <AdheredModal isCreate isOpen={open} close={() => setOpen(false)} />
     </React.Fragment>
   );
 };

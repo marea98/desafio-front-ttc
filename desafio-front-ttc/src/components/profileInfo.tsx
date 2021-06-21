@@ -16,13 +16,13 @@ import { useProfileInfoStyles } from './styles/profileInfo';
 export default function MenuListComposition() {
   const classes = useProfileInfoStyles();
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const anchorRef = React.useRef<any>(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: any) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -30,7 +30,7 @@ export default function MenuListComposition() {
     setOpen(false);
   };
 
-  function handleListKeyDown(event) {
+  function handleListKeyDown(event: any) {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
@@ -93,20 +93,20 @@ export default function MenuListComposition() {
                 >
                   <MenuItem
                     onClick={handleClose}
-                    onMouseEnter={(e) =>
+                    onMouseEnter={(e: any) =>
                       (e.target.style.background = '#D3D3D3')
                     }
-                    onMouseLeave={(e) => (e.target.style.background = '#fff')}
+                    onMouseLeave={(e: any) => (e.target.style.background = '#fff')}
                     className={classes.menuItem}
                   >
                     Ver Perfil
                   </MenuItem>
                   <MenuItem
                     onClick={handleClose}
-                    onMouseEnter={(e) =>
+                    onMouseEnter={(e: any) =>
                       (e.target.style.background = '#D3D3D3')
                     }
-                    onMouseLeave={(e) => (e.target.style.background = '#fff')}
+                    onMouseLeave={(e: any) => (e.target.style.background = '#fff')}
                     className={classes.menuItem}
                   >
                     Sair

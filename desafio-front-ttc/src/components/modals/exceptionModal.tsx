@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ClassificationSelect from '../selects/classificationSelect';
 import { SuccessToast } from '../toasts/messageToast';
 import {
   Grid,
@@ -10,15 +11,25 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useModalStyles } from './styles/modalStyles';
+import { IException } from '../../data/interfaces/IException';
 
-const ProdutoModal = ({ data, isOpen, close }) => {
+
+interface IExcecoesModal  {
+    data: IException,
+    isOpen: boolean,
+    close(): void
+}
+
+
+const ExcecoesModal : React.FunctionComponent<IExcecoesModal> = ({ data, isOpen, close }) => {
   const classes = useModalStyles();
 
-  const [product, setProduct] = useState({
+  const [exception, setException] = useState({
     code: data?.codigo || '',
     adhered_code: data?.codigo_aderido || '',
-    name: data?.nome || '',
+    unit_name: data?.nome_unidade || '',
     prefix: data?.prefixo || '',
+    classification: data?.classificacao || '',
   });
 
   return (
@@ -26,7 +37,7 @@ const ProdutoModal = ({ data, isOpen, close }) => {
       <Dialog open={isOpen} onClose={close} aria-labelledby='form-dialog-title'>
         <DialogTitle id='form-dialog-title'>
           <Typography component='span' variant='h5'>
-            Produto
+            Exceções
           </Typography>
         </DialogTitle>
         <DialogContent>
@@ -41,31 +52,35 @@ const ProdutoModal = ({ data, isOpen, close }) => {
               variant='outlined'
               disabled
               label='Código'
-              value={product?.code}
+              value={exception?.code}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               disabled
               label='Código aderido'
-              value={product?.adhered_code}
+              value={exception?.adhered_code}
+              className={classes.input}
+            />
+            <ClassificationSelect
+              classifications={exception?.classification}
               className={classes.input}
             />
             <TextField
               variant='outlined'
-              label='Nome '
-              value={product.name}
-              onChange={(e, _) => {
-                setProduct({ ...product, name: e.target.value });
+              label='Nome unidade'
+              value={exception.unit_name}
+              onChange={(e : React.ChangeEvent<HTMLInputElement>) => {
+                setException({ ...exception, unit_name: e.target.value });
               }}
               className={classes.input}
             />
             <TextField
               variant='outlined'
               label='Prefixo'
-              value={product.prefix}
-              onChange={(e, _) => {
-                setProduct({ ...product, prefix: e.target.value });
+              value={exception.prefix}
+              onChange={(e : React.ChangeEvent<HTMLInputElement>) => {
+                setException({ ...exception, prefix: e.target.value });
               }}
               className={classes.input}
             />
@@ -96,4 +111,4 @@ const ProdutoModal = ({ data, isOpen, close }) => {
   );
 };
 
-export default ProdutoModal;
+export default ExcecoesModal;

@@ -2,8 +2,14 @@ import React from 'react';
 import { Delete } from '@material-ui/icons';
 import { Grid, TextField, Typography, IconButton } from '@material-ui/core';
 import alphabet from '../utils/alphabet';
+import {IClassification} from '../data/interfaces/IClassification';
 
-const ClassificationComponent = ({ classifications, removeClassification }) => {
+interface IClassificationSelect {
+  classifications: IClassification[],
+  removeClassification(index: number): void
+}
+
+const ClassificationComponent: React.FC<IClassificationSelect> = ({ classifications, removeClassification }) => {
   return (
     <Grid container>
       <Grid
