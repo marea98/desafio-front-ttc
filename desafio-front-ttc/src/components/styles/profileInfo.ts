@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 
-const useProfileInfoStyles = makeStyles((theme) => ({
+const useProfileInfoStyles = makeStyles((theme: Theme) => ({
   paper: {
     marginRight: theme.spacing(1),
   },

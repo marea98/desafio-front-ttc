@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import allClassifications from '../../data/classificacoes';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import {IClassification} from '../../data/interfaces/IClassification';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize='small' />;
 const checkedIcon = <CheckBoxIcon fontSize='small' />;
 
-const ClassificacaoSelect = ({ classifications }) => {
+interface IClassificationSelect extends InputHTMLAttributes<HTMLInputElement> {
+  classifications: IClassification[],
+}
+
+const ClassificationSelect : React.FC<IClassificationSelect> = ({ classifications, ...rest }) => {
   return (
     <Autocomplete
-      multiple
+      multiple 
       limitTags={3}
       id='checkboxes-tags-demo'
-      defaultValue={allClassifications.filter((x) =>
-        classifications.some((y) => y.nome === x.nome)
+      defaultValue={allClassifications.filter((x: IClassification) =>
+        classifications.some((y: IClassification) => y.nome === x.nome)
       )}
       options={allClassifications}
       disableCloseOnSelect
@@ -43,4 +48,4 @@ const ClassificacaoSelect = ({ classifications }) => {
   );
 };
 
-export default ClassificacaoSelect;
+export default ClassificationSelect;
